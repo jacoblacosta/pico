@@ -1,0 +1,739 @@
+/*
+
+reset & base
+
+*/
+
+body {
+    background-color: #085212;
+    color: #fff;
+    font-family: sans-serif;
+    margin: 0;
+}
+body.calm {
+    background-color: #272e28;
+    transition: background-color 1s;
+}
+
+
+/*
+
+widget
+
+*/
+
+.hide-verbose .verbose {
+    display: none;
+}
+
+.widget-container {
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    /* padding-bottom: 48px; */
+    padding-top: 12px;
+    transition: background-color 1s;
+}
+.widget-title {
+    font-size: 40px;
+}
+.widget-status-bar {
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 6px;
+    background-color: red;
+}
+
+/* TODO contine dev here  */
+.widget-status-bar {
+    display: none;
+}
+
+.widget-container.rest-invalid {
+    background-color: #200000;
+}
+.widget-container.rest-invalid.rest-await {
+    background-color: transparent;
+}
+.widget-container.rest-invalid .main-button, .widget-container.rest-invalid.shared-any-dirty .main-button {
+    background-color: #320000;
+    cursor: not-allowed;
+}
+.widget-container.rest-invalid.shared-any-dirty .main-button:hover, .widget-container.rest-invalid .main-button:hover {
+    background-color: #320000;
+}
+.widget-container.rest-invalid.rest-await .main-button {
+    background-color: #667300;  /* revert  to base */
+}
+
+.widget-container.shared-any-dirty .main-button {
+    background-color: #0062a6;
+}
+
+.widget-container.shared-any-dirty .main-button:hover {
+    background-color: #066bb3;
+}
+
+.widget-container .main-button {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    justify-content: center;
+    padding: 8px 16px;
+    min-height: 40px;
+
+    background-color: #667300;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    white-space: normal;
+    box-shadow: 0px 8px 4px -8px #000;
+}
+.widget-container .main-button:hover {
+    background-color: #648002;
+}
+
+.widget-element-data {
+    transition: opacity 1s;
+    opacity: 1;
+}
+
+.widget-container.rest-await .widget-element-data {
+    opacity: 0.3;
+}
+
+/*
+
+collapser
+
+*/
+
+.collapser-element-container {
+    max-height: 0px;
+    transition: max-height 1s;
+    overflow: hidden;
+}
+.collapser-element-container.uncollapsed {
+    max-height: 10000px;
+}
+
+.collapser-element-container.no-animation {
+    display: none;
+    max-height: none;
+    transition: none;
+}
+
+.collapser-element-container.no-animation.uncollapsed {
+    display: block;
+}
+
+/*
+
+widget-element
+
+*/
+.widget-element-container {
+    display: flex;
+    flex-direction: column;
+    margin: 8px 32px;
+}
+.widget-element-data {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.widget-element-data .rv {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    margin: 6px -2px;
+}
+.widget-element-data .rv .int-range-input, .ratio-range-input {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    margin: 2px;
+}
+
+.widget-element-data .rv .value-display, .widget-element-data .date-display, .widget-element-data .text-display {
+    display: flex;
+    flex-direction: row;
+    margin: 2px;
+    font-size: 16px;
+    transition: color 0.3s; /* for disabled state */
+}
+
+.disabled .widget-element-data .rv .value-display, .widget-element-data .date-display, .widget-element-data .text-display {
+    color: #666;
+}
+
+.widget-element-data .date-display, .widget-element-data .text-display {
+    color: #ffe8a9;
+}
+
+.widget-element-caption {
+    font-size: 18px;
+    margin: 8px 0;
+    transition: color 0.3s; /* for disabled state */
+}
+.disabled .widget-element-caption {
+    color: #666;
+}
+
+.widget-element-caption::after {
+    content: ': ';
+}
+
+.widget-element-comment {
+    font-size: 13px;
+    color: #abc58d;
+    margin: 8px 0;
+    transition: color 0.3s; /* for disabled state */
+}
+
+.disabled .widget-element-comment {
+    color: #666;
+}
+.hide-verbose .widget-element-comment {
+    display: none;
+}
+
+.widget-element-data .hms {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    margin: -2px;
+}
+
+.widget-element-data .hms input,
+.widget-element-data select {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    font-size: 16px;
+    margin: 2px;
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #abc58d;
+    padding: 10px 16px 9px 16px;
+    width: 0; /* to reset default input behaviuor (it does not compacted less then some value) */
+    box-shadow: 0px 8px 4px -8px #00000080;
+    transition: color 0.3s, border-color 0.3s; /* for disabled state */
+}
+.disabled .widget-element-data .hms input,
+.disabled .widget-element-data select {
+    border: 1px solid #666;
+    color: #666;
+}
+
+option {
+    color: #000;
+}
+.widget-element-data .hms .delimeter {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 32px;
+    margin: 2px;
+}
+
+.widget-element-data .trio {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    margin: -2px;
+}
+
+.widget-element-data .trio input {
+    /* same as main-button */
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    justify-content: center;
+    padding: 8px 16px;
+    min-height: 40px;
+    background-color: #ffffff10;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    white-space: normal;
+    /* not like main-button */
+    margin: 2px;
+}
+
+.widget-container.rest-invalid .widget-element-data .trio input {
+    cursor: not-allowed;
+}
+
+.widget-element-data .trio input.selected {
+    box-shadow: inset 0px 8px 4px -8px #000;
+}
+.widget-element-data .trio input {
+    box-shadow: 0px 8px 4px -8px #00000080;
+}
+
+.widget-element-data .trio input.auto {
+    border-radius: 12px 0 0 12px;
+}
+.widget-element-data .trio input.manual-off {
+    border-radius: 0;
+}
+.widget-element-data .trio input.manual-on {
+    border-radius: 0 12px 12px 0;
+}
+
+
+.widget-element-data .trio input.selected.auto {
+    background-color: #177e3c;
+}
+
+.widget-element-data .trio input.selected.manual-off {
+    background-color: #777777;
+}
+
+.widget-element-data .trio input.selected.manual-on {
+    background-color: #fcdc03;
+    color: #333;
+}
+
+
+.widget-element-data .checkbox-input {
+    width: 24px;
+    height: 24px;
+    margin: 5px 0;
+}
+
+.widget-element-data .text-input {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    font-size: 16px;
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #abc58d;
+    padding: 10px 16px 9px 16px;
+    width: 0; /* to reset default input behaviuor (it does not compacted less then some value) */
+    box-shadow: 0px 8px 4px -8px #00000080;
+}
+.widget-element-data .widget-link {
+    color: #fff;
+    font-size: 22px;
+}
+
+.widget-title-parent-link {
+    color: #abc58d;
+}
+
+#app-root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.app-container, .root-widget-container, .widget-footer-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+.widget-footer-container {
+    justify-content: flex-end;
+}
+/* .widget-footer {
+    padding: 16px 32px;
+    background: #131d1d;
+    color: #aebfa6;
+    font-size: 12px;
+} */
+
+.widget-footer {
+    padding: 16px 32px;
+    background: #212522;
+    color: #ffffff70;
+    font-size: 12px;
+}
+
+.widget-section-subtitle-row {
+    display: flex;
+    flex-direction: row;
+}
+.widget-section-subtitle-row .widget-section-subtitle {
+    flex-grow: 1;
+}
+.widget-section-subtitle {
+    font-size: 30px;
+    transition: color 0.3s; /* for disabled state */
+}
+.widget-section-subtitle.level-1 {
+    color: #ffeeb2;
+}
+.widget-section-subtitle.level-2 {
+    color: #b2deff;
+}
+.widget-section-subtitle.disabled {
+    color: #ffffff80;
+}
+
+hr.widget-section-hr {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    margin-bottom: 32px;
+    border: none;
+    border-bottom: 1px solid #ddffaa40;
+}
+.widget-section-comment {
+    font-size: 13px;
+    color: #abc58d;
+    margin: 2px 0;
+    transition: color 0.3s; /* for disabled state */
+}
+.disabled .widget-section-comment {
+    color: #666;
+}
+
+.hide-verbose .widget-section-comment {
+    display: none;
+}
+
+
+/*
+
+splash
+
+*/
+
+.splash-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    perspective: 150vw;
+}
+.splash-container.fade-out {
+    opacity: 0;
+    transition: opacity 2s, transform 2s;
+    transform: scale(1.1);
+}
+.splash-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 64px;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: #000;
+    font-size: 22px;
+    transform: rotateX(-10deg);
+}
+.splash-container.splash-container.fade-out .splash-message {
+    transition: transform 0.5s;
+    transform: rotateX(0deg);
+}
+
+/*
+
+ladder
+
+*/
+
+
+.ladder-element-container {
+    opacity: 0;
+    transform: perspective(150vw) rotateX(20deg);
+    transition: transform 1s, opacity 0.5s;
+}
+.ladder-element-container.show {
+    opacity: 1;
+    transform: perspective(150vw) rotateX(0);
+}
+
+/*
+
+scape
+
+*/
+
+.scape {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+.scape svg {
+    max-height: 60vh;
+}
+.scape .flat-svg {
+    margin: -32px -80px -16px -105px;
+}
+/* groups */
+
+.scape .flat-svg.highlight .group-outer-light,
+.scape .flat-svg.highlight .group-device-light,
+.scape .flat-svg.highlight .group-plane,
+.scape .flat-svg.highlight .group-device-vaporizer,
+.scape .flat-svg.highlight .group-device-heater,
+.scape .flat-svg.highlight .group-device-conditioner,
+.scape .flat-svg.highlight .group-device-co2,
+.scape .flat-svg.highlight .group-device-fan,
+.scape .flat-svg.highlight .group-device-can,
+.scape .flat-svg.highlight .group-device-water {
+    opacity: 0.15;
+}
+
+
+.scape .flat-svg.highlight.highlight-group-outer-light .group-outer-light,
+.scape .flat-svg.highlight.highlight-group-device-light .group-device-light,
+.scape .flat-svg.highlight.highlight-group-plane .group-plane,
+.scape .flat-svg.highlight.highlight-group-device-vaporizer .group-device-vaporizer,
+.scape .flat-svg.highlight.highlight-group-device-heater .group-device-heater,
+.scape .flat-svg.highlight.highlight-group-device-conditioner .group-device-conditioner,
+.scape .flat-svg.highlight.highlight-group-device-co2 .group-device-co2,
+.scape .flat-svg.highlight.highlight-group-device-fan .group-device-fan,
+.scape .flat-svg.highlight.highlight-group-device-can .group-device-can,
+.scape .flat-svg.highlight.highlight-group-device-water .group-device-water {
+    opacity: 1;
+    transition: 2s;
+}
+
+
+
+/* light */
+.scape .flat-svg #device-light-on,
+.scape .flat-svg #device-light-off,
+.scape .flat-svg #device-light-rays,
+.scape .flat-svg #device-light-reflects,
+.scape .flat-svg #device-light-led {
+    opacity: 0;
+}
+
+.scape .flat-svg.light-defined #device-light-off {
+    opacity: 1;
+}
+
+.scape .flat-svg.light-defined.light-active #device-light-on,
+.scape .flat-svg.light-defined.light-active #device-light-rays,
+.scape .flat-svg.light-defined.light-active #device-light-reflects,
+.scape .flat-svg.light-defined.light-active #device-light-led {
+    opacity: 1;
+}
+
+
+/* fan */
+.scape .flat-svg #device-fan,
+.scape .flat-svg #device-fan-rotor-1,
+.scape .flat-svg #device-fan-rotor-2,
+.scape .flat-svg #device-fan-led {
+    opacity: 0;
+}
+
+.scape .flat-svg.fan-defined #device-fan,
+.scape .flat-svg.fan-defined #device-fan-rotor-1,
+.scape .flat-svg.fan-defined #device-fan-rotor-2 {
+    opacity: 1;
+}
+
+.scape .flat-svg #device-fan-rotor-1,
+.scape .flat-svg #device-fan-rotor-2 {
+    transform-origin: 1152px 472px;
+}
+
+.scape .flat-svg.fan-defined.fan-active #device-fan-rotor-1 {
+    -webkit-animation: endlessRotationX 0.5s linear infinite;
+    animation: endlessRotationX 0.5s linear infinite;
+}
+
+.scape .flat-svg.fan-defined.fan-active #device-fan-rotor-2 {
+    -webkit-animation: endlessRotationX_phase90 0.5s linear infinite;
+    animation: endlessRotationX_phase90 0.5s linear infinite;
+}
+
+.scape .flat-svg.fan-defined.fan-active #device-fan-led {
+    opacity: 1;
+}
+
+
+/* water */
+.scape .flat-svg #device-water-pipes,
+.scape .flat-svg #device-water-pump,
+.scape .flat-svg #device-water-outlets,
+.scape .flat-svg #device-water-led {
+    opacity: 0;
+}
+
+.scape .flat-svg #device-water-pipes,
+.scape .flat-svg.water-defined #device-water-pump {
+    opacity: 1;
+}
+
+.scape .flat-svg #device-water-pump {
+    transform-origin: 1088px 608px;
+}
+
+.scape .flat-svg.water-defined.water-active #device-water-pump {
+    -webkit-animation: endlessRotationZ 2s linear infinite;
+    animation: endlessRotationZ 2s linear infinite;
+}
+
+.scape .flat-svg.water-defined.water-active #device-water-outlets,
+.scape .flat-svg.water-defined.water-active #device-water-led {
+    opacity: 1;
+}
+
+
+/* heater */
+.scape .flat-svg #device-heater-off,
+.scape .flat-svg #device-heater-on,
+.scape .flat-svg #device-heater-waves,
+.scape .flat-svg #device-heater-led {
+    opacity: 0;
+}
+
+.scape .flat-svg.heater-defined #device-heater-off {
+    opacity: 1;
+}
+
+.scape .flat-svg.heater-defined.heater-active #device-heater-off {
+    opacity: 0;
+}
+
+.scape .flat-svg.heater-defined.heater-active #device-heater-on,
+.scape .flat-svg.heater-defined.heater-active #device-heater-waves,
+.scape .flat-svg.heater-defined.heater-active #device-heater-led {
+    opacity: 1;
+}
+
+/* vaporizer */
+
+.scape .flat-svg #device-vaporizer-pipes,
+.scape .flat-svg #device-vaporizer-pump,
+.scape .flat-svg #device-vaporizer-vapor,
+.scape .flat-svg #device-vaporizer-led {
+    opacity: 0;
+}
+
+.scape .flat-svg #device-vaporizer-pipes,
+.scape .flat-svg.vaporizer-defined #device-vaporizer-pump {
+    opacity: 1;
+}
+
+.scape .flat-svg #device-vaporizer-pump {
+    transform-origin: 1152px 352px;
+}
+
+.scape .flat-svg.vaporizer-defined.vaporizer-active #device-vaporizer-pump {
+    -webkit-animation: endlessRotationZ 2s linear infinite;
+    animation: endlessRotationZ 2s linear infinite;
+}
+
+.scape .flat-svg.vaporizer-defined.vaporizer-active #device-vaporizer-vapor,
+.scape .flat-svg.vaporizer-defined.vaporizer-active #device-vaporizer-led {
+    opacity: 1;
+}
+
+/* conditioner */
+.scape .flat-svg #device-conditioner,
+.scape .flat-svg #device-conditioner-rotor-1,
+.scape .flat-svg #device-conditioner-rotor-2,
+.scape .flat-svg #device-conditioner-led {
+    opacity: 0;
+}
+
+.scape .flat-svg.conditioner-defined #device-conditioner,
+.scape .flat-svg.conditioner-defined #device-conditioner-rotor-1,
+.scape .flat-svg.conditioner-defined #device-conditioner-rotor-2 {
+    opacity: 1;
+}
+
+.scape .flat-svg #device-conditioner-rotor-1,
+.scape .flat-svg #device-conditioner-rotor-2 {
+    transform-origin: 304px 416px;
+}
+
+.scape .flat-svg.conditioner-defined.conditioner-active #device-conditioner-rotor-1 {
+    -webkit-animation: endlessRotationX 0.5s linear infinite;
+    animation: endlessRotationX 0.5s linear infinite;
+}
+
+.scape .flat-svg.conditioner-defined.conditioner-active #device-conditioner-rotor-2 {
+    -webkit-animation: endlessRotationX_phase90 0.5s linear infinite;
+    animation: endlessRotationX_phase90 0.5s linear infinite;
+}
+
+.scape .flat-svg.conditioner-defined.conditioner-active #device-conditioner-led {
+    opacity: 1;
+}
+
+/* co2 */
+.scape .flat-svg #device-co2,
+.scape .flat-svg #device-co2-gas,
+.scape .flat-svg #device-co2-led {
+    opacity: 0;
+}
+
+.scape .flat-svg.co2-defined #device-co2 {
+    opacity: 1;
+}
+
+.scape .flat-svg.co2-defined.co2-active #device-co2-gas,
+.scape .flat-svg.co2-defined.co2-active #device-co2-led {
+    opacity: 1;
+}
+
+/* outer-light (day/night) */
+
+.scape .flat-svg #scape-day,
+.scape .flat-svg #scape-night {
+    opacity: 0;
+}
+
+.scape .flat-svg.outer-light-defined #scape-day,
+.scape .flat-svg.outer-light-defined #scape-night {
+    opacity: 1;
+}
+
+@keyframes endlessRotationZ {
+    from {
+        -webkit-transform: rotateZ(0);
+        transform: rotateZ(0);
+    }
+    to {
+        -webkit-transform: rotateZ(360deg);
+        transform: rotateZ(360deg);
+    }
+}
+
+@keyframes endlessRotationX {
+    from {
+        -webkit-transform: rotateX(0);
+        transform: rotateX(0);
+    }
+    to {
+        -webkit-transform: rotateX(360deg);
+        transform: rotateX(360deg);
+    }
+}
+
+@keyframes endlessRotationX_phase90 {
+    from {
+        -webkit-transform: rotateX(90deg);
+        transform: rotateX(90deg);
+    }
+    to {
+        -webkit-transform: rotateX(450deg);
+        transform: rotateX(450deg);
+    }
+}

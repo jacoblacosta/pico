@@ -1,0 +1,20 @@
+{
+    "deferredStylePathes": [
+        "./src/css/index.css"
+    ],
+    "deferredSourcePathes": [
+        "./src/js/picoface/start.js"
+    ],
+    "deferredTemplatePath": "./src/deferred.template.html",
+    "prebundledSourcePathes": [
+        "./vendor/inflate.min.js"
+    ],
+    "prebundledDeferredLoaderSourcePath": "./src/js/prebundled/deferredLoader.js",
+
+    "indexTemplatePath": "./src/index.template.html",
+    "outputDirPath": "../mos/fs",
+    "indexFileName": "index.html",
+    "chunkSize": 16384
+}
+
+
