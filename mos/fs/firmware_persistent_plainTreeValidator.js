@@ -11,6 +11,14 @@ module.exports = {
     gpioPin: function(value) {
         return (typeof value.idx === 'number' && value.idx >= 0 && value.idx < 32);
     },
+    smartOutputPin: function(value) {
+        return (
+            typeof value.idx === 'number' && value.idx >= 0 && value.idx < 32 &&
+            typeof value.modeKey === 'string' && (value.modeKey === 'raw' || value.modeKey === 'extended')
+        );
+
+
+    },
     cyclicTimerSettingsSection: function(value) {
         return (
             typeof value.timespan24 === 'object' && firmware.persistent.plainTreeValidator.timespan24(value.timespan24) &&

@@ -5,7 +5,8 @@ import { flatSvgCode } from '../flatSvgCode.js';
 import {
     Time24,
     GpioPin,
-    EnvironmentSensorType
+    EnvironmentSensorType,
+    SmartOutputPin
 
 } from '../crossplatform/assertable.js';
 
@@ -351,11 +352,11 @@ export class GpioPinWidgetElement extends AbstractWidget {
         this.unmanaged.$select = document.createElement('select');
         this.unmanaged.$select.classList.add('select');
 
-        for (let grioPinIdx = 0; grioPinIdx < 32; grioPinIdx++) {
+        for (let gpioPinIdx = 0; gpioPinIdx < 32; gpioPinIdx++) {
             const $option = document.createElement('option')
             $option.classList.add('widget-element-select-option');
-            $option.text = grioPinIdx;
-            $option.value = grioPinIdx;
+            $option.text = gpioPinIdx;
+            $option.value = gpioPinIdx;
             this.unmanaged.$select.appendChild($option);
         }
 
@@ -396,6 +397,138 @@ export class GpioPinWidgetElement extends AbstractWidget {
             this.unmanaged.$select.value = '';
         }
         this.unmanaged.$select.disabled = this.binded.state.shared.isDisabled;
+    }
+    async easy_saveToRestApi() {
+        // do nothing
+    }
+    async easy_loadFromRestApi() {
+        // do nothing
+    }
+    async easy_loadOnceFromLiveApi() {
+        //do nothing
+    }
+    easy_subscribeToLiveApi(callback) {
+        //do nothing
+    }
+    easy_unsubscribeToLiveApi() {
+        //do nothing
+    }
+    easy_loadFromLiveApiEvent(liveApiValue) {
+        //do nothing
+    }
+}
+export class SmartOutputPinWidgetElement extends AbstractWidget {
+    constructor ($parent, ladder, i18nSubtree) {
+        super($parent, ladder, i18nSubtree, {isReadFromUnmanagedDom: true, isLadderElement: true});
+    }
+    refillModeKeySelectOptions() {
+        let selectedValue = this.unmanaged.$modeKeySelect.value;
+        this.unmanaged.$modeKeySelect.innerHTML = '';
+        if (this.binded.state.shared.isExtenderEnabled) {
+            const $option = document.createElement('option')
+            $option.classList.add('widget-element-select-option');
+            $option.text = 'extended';
+            $option.value = 'extended';
+            this.unmanaged.$modeKeySelect.appendChild($option);
+        }
+        {
+            const $option = document.createElement('option')
+            $option.classList.add('widget-element-select-option');
+            $option.text = 'raw';
+            $option.value = 'raw';
+            this.unmanaged.$modeKeySelect.appendChild($option);
+        }
+        if (selectedValue === '' && !!this.binded.rest) {
+            selectedValue = this.binded.rest.modeKey;
+        }
+        this.unmanaged.$modeKeySelect.value = selectedValue;
+    }
+    refillIdxSelectOptions() {
+        let selectedValue = this.unmanaged.$idxSelect.value;
+        this.unmanaged.$idxSelect.innerHTML = '';
+        if (!this.binded.rest) {
+            // do nothing
+        } else if (this.binded.rest.modeKey === 'raw') {
+            for (let gpioPinIdx = 0; gpioPinIdx < 32; gpioPinIdx++) {
+                const $option = document.createElement('option')
+                $option.classList.add('widget-element-select-option');
+                $option.text = 'R' + gpioPinIdx;
+                $option.value = gpioPinIdx;
+                this.unmanaged.$idxSelect.appendChild($option);
+            }
+        } else if (this.binded.rest.modeKey === 'extended') {
+            const pinsCount = this.binded.state.shared.extenderCapacity * 8;
+            for (let extendedOutputPinIdx = 0; extendedOutputPinIdx < pinsCount; extendedOutputPinIdx++) {
+                const $option = document.createElement('option')
+                $option.classList.add('widget-element-select-option');
+                $option.text = 'E' + extendedOutputPinIdx;
+                $option.value = extendedOutputPinIdx;
+                this.unmanaged.$idxSelect.appendChild($option);
+            }
+        } else {
+            throw new Error('bad modeKey');
+        }
+        if (selectedValue === '' && !!this.binded.rest) {
+            selectedValue = this.binded.rest.idx.toString();
+        }
+        this.unmanaged.$idxSelect.value = selectedValue;
+    }
+    easy_buildDom() {
+        this.$container.classList.add('widget-element-container');
+
+        this.unmanaged.$modeKeySelect = document.createElement('select');
+        this.unmanaged.$modeKeySelect.classList.add('select');
+        this.unmanaged.$idxSelect = document.createElement('select');
+        this.unmanaged.$idxSelect.classList.add('select');
+
+        this.refillModeKeySelectOptions();
+        this.refillIdxSelectOptions();
+
+        this.$data = document.createElement('div')
+        this.$data.classList.add('widget-element-data');
+        this.$caption = document.createElement('div')
+        this.$caption.classList.add('widget-element-caption');
+        this.$caption.innerText = this.i18nSubtree.caption;
+        this.$comment = document.createElement('div')
+        this.$comment.classList.add('widget-element-comment');
+        this.$comment.innerText = this.i18nSubtree.comment;
+        this.$data.appendChild(this.unmanaged.$modeKeySelect);
+        this.$data.appendChild(this.unmanaged.$idxSelect);
+        this.$container.appendChild(this.$caption);
+        this.$container.appendChild(this.$data);
+        this.$container.appendChild(this.$comment);
+    }
+    easy_destroy() {
+        // do nothimg
+    }
+    easy_fromBindedRestToBindedState() {
+        // do nothing
+    }
+    easy_fromBindedLiveToBindedState() {
+        // do nothing
+    }
+    easy_validateBindedRest() {
+        return this.binded.rest && this.binded.rest.validate();
+    }
+    easy_fromUnmanagedDomToBindedRest() {
+        const idx = parseInt(this.unmanaged.$idxSelect.value);
+        const modeKey = this.unmanaged.$modeKeySelect.value;
+        this.binded.rest = new SmartOutputPin(modeKey, idx);
+    }
+    easy_fromBindedToUnmanagedDom() {
+        // TODO: make it work with select
+        console.log('qwe');
+        if (this.binded.rest) {
+            this.unmanaged.$idxSelect.value = this.binded.rest.idx.toString();
+            this.unmanaged.$modeKeySelect.value = this.binded.rest.modeKey;
+        } else {
+            this.unmanaged.$idxSelect.value = '';
+            this.unmanaged.$modeKeySelect.value = '';
+        }
+        this.unmanaged.$idxSelect.disabled = this.binded.state.shared.isDisabled;
+        this.unmanaged.$modeKeySelect.disabled = this.binded.state.shared.isDisabled;
+        this.refillModeKeySelectOptions();
+        this.refillIdxSelectOptions();
     }
     async easy_saveToRestApi() {
         // do nothing

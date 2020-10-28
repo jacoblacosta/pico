@@ -1,6 +1,6 @@
 {
   "name": "picochip-emulator",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "description": "emulator of real http server on mongoose-os",
   "main": "index.js",
   "scripts": {

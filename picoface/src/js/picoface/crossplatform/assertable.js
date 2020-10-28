@@ -76,6 +76,32 @@ export class GpioPin extends AbstractAssertable {
         return (typeof this.idx === 'number' && this.idx >= 0 && this.idx < 32);
     }
 }
+export class SmartOutputPin extends AbstractAssertable {
+    static fromPlainTree(plainTree) {
+        return new SmartOutputPin(plainTree.modeKey, plainTree.idx);
+    }
+    toPlainTree() {
+        // old strict assert: this.assert();
+        const plainTree = {
+            modeKey: this.modeKey,
+            idx: this.idx,
+        }
+        return plainTree;
+    }
+    constructor(modeKey = 'raw', idx = 0) {
+        super();
+        this.modeKey = modeKey;
+        this.idx = idx;
+    }
+    validate() {
+        return (
+            typeof this.idx === 'number' && this.idx >= 0 && this.idx < 32 &&
+            typeof this.modeKey === 'string' && (this.modeKey === 'raw' || this.modeKey === 'extended')
+        );
+    }
+}
+
+
 export class CyclicTimerSettingsSection extends AbstractAssertable {
     static fromPlainTree(plainTree) {
         const timespan24 = Timespan24.fromPlainTree(plainTree.timespan24);
@@ -1371,7 +1397,7 @@ export class OutputPeripheralRelaySettings extends AbstractAssertable {
 export class OutputPeripheralRelayChannelSettings extends AbstractAssertable {
     static fromPlainTree(plainTree) {
         const isEnabled = plainTree.isEnabled;
-        const dataPin = GpioPin.fromPlainTree(plainTree.dataPin);
+        const dataPin = SmartOutputPin.fromPlainTree(plainTree.dataPin);
         return new OutputPeripheralRelayChannelSettings(isEnabled, dataPin);
 
     }
@@ -1385,7 +1411,7 @@ export class OutputPeripheralRelayChannelSettings extends AbstractAssertable {
     }
     constructor(
         isEnabled = false,
-        dataPin = new GpioPin(14),
+        dataPin = new SmartOutputPin('raw', 14),
     ) {
         super();
         this.isEnabled = isEnabled;
@@ -1395,7 +1421,7 @@ export class OutputPeripheralRelayChannelSettings extends AbstractAssertable {
     validate() {
         return (
             typeof this.isEnabled === 'boolean' &&
-            this.dataPin && this.dataPin instanceof GpioPin && this.dataPin.validate()
+            this.dataPin && this.dataPin instanceof SmartOutputPin && this.dataPin.validate()
         );
     }
 }

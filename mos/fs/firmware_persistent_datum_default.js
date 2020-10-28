@@ -276,23 +276,23 @@ module.exports = {
                 relay: {
                     light: {
                         isEnabled: false,
-                        dataPin: {idx: 14},
+                        dataPin: {modeKey: 'raw', idx: 14},
                     },
                     fan: {
                         isEnabled: false,
-                        dataPin: {idx: 14},
+                        dataPin: {modeKey: 'raw', idx: 14},
                     },
                     water: {
                         isEnabled: false,
-                        dataPin: {idx: 14},
+                        dataPin: {modeKey: 'raw', idx: 14},
                     },
                     heater: {
                         isEnabled: false,
-                        dataPin: {idx: 14},
+                        dataPin: {modeKey: 'raw', idx: 14},
                     },
                     vaporizer: {
                         isEnabled: false,
-                        dataPin: {idx: 14},
+                        dataPin: {modeKey: 'raw', idx: 14},
                     },
                 }
             }

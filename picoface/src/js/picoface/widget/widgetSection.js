@@ -2,7 +2,7 @@
 import { AbstractWidget } from './abstractWidget.js';
 import { i18n } from '../i18n/current.js';
 import { Collapser } from '../collapser.js';
-import { BooleanViewerElement, BooleanWidgetElement, DateViewerElement, EnvironmentSensorSensorTypeWidgetElement, GpioPinWidgetElement, IntegerRangeWidgetElement, LinkWidgetElement, NumberViewerElement, RatioRangeWidgetElement, SaveSettingsButtonWidgetElement, SectionHrWidgetElement, SectionTitleWidgetElement, SectionTitleWithCheckboxWidgetElement, TextViewerElement, Timespan24WidgetMultiElement, TzViewerElement } from './widgetElement.js';
+import { BooleanViewerElement, BooleanWidgetElement, DateViewerElement, EnvironmentSensorSensorTypeWidgetElement, GpioPinWidgetElement, IntegerRangeWidgetElement, LinkWidgetElement, NumberViewerElement, RatioRangeWidgetElement, SaveSettingsButtonWidgetElement, SectionHrWidgetElement, SectionTitleWidgetElement, SectionTitleWithCheckboxWidgetElement, SmartOutputPinWidgetElement, TextViewerElement, Timespan24WidgetMultiElement, TzViewerElement } from './widgetElement.js';
 
 
 export class CyclicTimerWidgetSection extends AbstractWidget {
@@ -1446,13 +1446,15 @@ export class OutputPeripheralWidgetSection extends AbstractWidget {
         // do nothimg
     }
     easy_fromBindedRestToBindedState() {
-        // do nothing
+        this.binded.state.shared.isExtenderEnabled = this.binded.rest.extender.isEnabled;
+        this.binded.state.shared.extenderCapacity = this.binded.rest.extender.capacity;
     }
     easy_fromBindedLiveToBindedState() {
         // do nothing
     }
     easy_validateBindedRest() {
         return this.binded.rest && this.binded.rest.validate();
+
     }
     easy_fromUnmanagedDomToBindedRest() {
         // do nothing
@@ -1601,7 +1603,7 @@ export class OutputPeripheralRelayChannelWidgetSection extends AbstractWidget {
         this.managed.isEnabled = new SectionTitleWithCheckboxWidgetElement(this.$container, this.ladder, this.i18nSubtree);
         this.collapser = new Collapser();
         this.$collapser = this.collapser.createElementContainer(this.$container);
-        this.managed.dataPin = new GpioPinWidgetElement(this.$collapser, this.ladder, this.i18nSubtree.dataPin);
+        this.managed.dataPin = new SmartOutputPinWidgetElement(this.$collapser, this.ladder, this.i18nSubtree.dataPin);
     }
     easy_destroy() {
         // do nothimg
