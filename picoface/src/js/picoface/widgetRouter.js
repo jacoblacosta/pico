@@ -9,14 +9,13 @@ import {
     PowerSettingsEditorWidget,
     TimeSettingsEditorWidget,
     WifiSettingsEditorWidget,
-    PinSettingsEditorWidget,
     SensorSettingsEditorWidget,
     PeripheralSettingsEditorWidget,
     BasicStatsViewerWidget,
     IndexWidget,
 } from './widget/widget.js';
 
-export class WidgetRoutdoor {
+export class WidgetRouter {
     static widgetConstructorsDictionary = {
         'settings/light': LightSettingsEditorWidget,
         'settings/webInterface': WebInterfaceSettingsEditorWidget,
@@ -27,7 +26,6 @@ export class WidgetRoutdoor {
         'settings/power': PowerSettingsEditorWidget,
         'settings/time': TimeSettingsEditorWidget,
         'settings/wifi': WifiSettingsEditorWidget,
-        'settings/pin': PinSettingsEditorWidget,
         'settings/sensor': SensorSettingsEditorWidget,
         'settings/peripheral': PeripheralSettingsEditorWidget,
         'stats/basic': BasicStatsViewerWidget,
@@ -66,13 +64,13 @@ export class WidgetRoutdoor {
                 this.currentWidget.level4_destroy();
             }
         }
-        this.$container.indoorHTML = '';
-        const widgetConsructor = WidgetRoutdoor.widgetConstructorsDictionary[newRouteKey];
+        this.$container.innerHTML = '';
+        const widgetConsructor = WidgetRouter.widgetConstructorsDictionary[newRouteKey];
         this.currentWidget = new widgetConsructor(this.$container);
     }
     navigateByHash() {
         const keyFromHash = location.hash.slice(1);
-        if (WidgetRoutdoor.widgetConstructorsDictionary[keyFromHash]) {
+        if (WidgetRouter.widgetConstructorsDictionary[keyFromHash]) {
             this.rebuildIndoorDom(keyFromHash);
             window.scrollTo(0, 0);
             return true;

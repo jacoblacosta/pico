@@ -65,10 +65,6 @@ export const i18n = {
                     caption: 'wifi settings',
                     comment: 'this chip wifi access point settings: ssid and password',
                 },
-                pinSettings: {
-                    caption: 'pin settings',
-                    comment: 'connection management',
-                },
                 sensorSettings: {
                     caption: 'sensor settings',
                     comment: 'sensor management',
@@ -441,47 +437,6 @@ export const i18n = {
                 saveButton: {
                     caption: 'save wifi settings to chip',
                     comment: 'will apply settings without reboot',
-                },
-            },
-        },
-
-        ///// pin
-        pinSettings: {
-            title: {
-                caption: 'pin settings',
-            },
-            lightRelaySwitchPin: {
-                caption: 'light relay switch pin',
-                comment: 'harware pin',
-            },
-            fanRelaySwitchPin: {
-                caption: 'fan relay switch pin',
-                comment: 'harware pin',
-            },
-            waterRelaySwitchPin: {
-                caption: 'water relay switch pin',
-                comment: 'harware pin',
-            },
-            heaterRelaySwitchPin: {
-                caption: 'heater relay switch pin',
-                comment: 'harware pin',
-            },
-            vaporizerRelaySwitchPin: {
-                caption: 'vaporizer relay switch pin',
-                comment: 'harware pin',
-            },
-            indoorDhtDataPin: {
-                caption: 'indoor dht sensor data pin',
-                comment: 'harware pin',
-            },
-            outdoorDhtDataPin: {
-                caption: 'outdoor dht sensor data pin',
-                comment: 'harware pin',
-            },
-            save: {
-                saveButton: {
-                    caption: 'save pin settings to chip and reboot',
-                    comment: 'will apply settings with reboot',
                 },
             },
         },

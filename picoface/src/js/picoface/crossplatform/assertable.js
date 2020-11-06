@@ -706,61 +706,6 @@ export class WifiSettings extends AbstractAssertable {
     }
 }
 
-export class PinSettings extends AbstractAssertable {
-    static fromPlainTree(plainTree) {
-        const lightRelaySwitchPin = GpioPin.fromPlainTree(plainTree.lightRelaySwitchPin);
-        const fanRelaySwitchPin = GpioPin.fromPlainTree(plainTree.fanRelaySwitchPin);
-        const waterRelaySwitchPin = GpioPin.fromPlainTree(plainTree.waterRelaySwitchPin);
-        const heaterRelaySwitchPin = GpioPin.fromPlainTree(plainTree.heaterRelaySwitchPin);
-        const vaporizerRelaySwitchPin = GpioPin.fromPlainTree(plainTree.vaporizerRelaySwitchPin);
-        const indoorDhtDataPin = GpioPin.fromPlainTree(plainTree.indoorDhtDataPin);
-        const outdoorDhtDataPin = GpioPin.fromPlainTree(plainTree.outdoorDhtDataPin);
-        return new PinSettings(lightRelaySwitchPin, fanRelaySwitchPin, waterRelaySwitchPin, heaterRelaySwitchPin, vaporizerRelaySwitchPin, indoorDhtDataPin, outdoorDhtDataPin);
-    }
-    toPlainTree() {
-        // old strict assert: this.assert();
-        const plainTree = {
-            lightRelaySwitchPin: this.lightRelaySwitchPin.toPlainTree(),
-            fanRelaySwitchPin: this.fanRelaySwitchPin.toPlainTree(),
-            waterRelaySwitchPin: this.waterRelaySwitchPin.toPlainTree(),
-            heaterRelaySwitchPin: this.heaterRelaySwitchPin.toPlainTree(),
-            vaporizerRelaySwitchPin: this.vaporizerRelaySwitchPin.toPlainTree(),
-            indoorDhtDataPin: this.indoorDhtDataPin.toPlainTree(),
-            outdoorDhtDataPin: this.outdoorDhtDataPin.toPlainTree(),
-        }
-        return plainTree;
-    }
-    constructor(
-        lightRelaySwitchPin = new GpioPin(1),
-        fanRelaySwitchPin = new GpioPin(2),
-        waterRelaySwitchPin = new GpioPin(3),
-        heaterRelaySwitchPin = new GpioPin(4),
-        vaporizerRelaySwitchPin = new GpioPin(5),
-        indoorDhtDataPin = new GpioPin(14),
-        outdoorDhtDataPin = new GpioPin(15),
-    ) {
-        super();
-        this.lightRelaySwitchPin = lightRelaySwitchPin;
-        this.fanRelaySwitchPin = fanRelaySwitchPin;
-        this.waterRelaySwitchPin = waterRelaySwitchPin;
-        this.heaterRelaySwitchPin = heaterRelaySwitchPin;
-        this.vaporizerRelaySwitchPin = vaporizerRelaySwitchPin;
-        this.indoorDhtDataPin = indoorDhtDataPin;
-        this.outdoorDhtDataPin = outdoorDhtDataPin;
-        // old strict assert: this.assert();
-    }
-    validate() {
-        return (
-            this.lightRelaySwitchPin && this.lightRelaySwitchPin instanceof GpioPin && this.lightRelaySwitchPin.validate() &&
-            this.fanRelaySwitchPin && this.fanRelaySwitchPin instanceof GpioPin && this.fanRelaySwitchPin.validate() &&
-            this.waterRelaySwitchPin && this.waterRelaySwitchPin instanceof GpioPin && this.waterRelaySwitchPin.validate() &&
-            this.heaterRelaySwitchPin && this.heaterRelaySwitchPin instanceof GpioPin && this.heaterRelaySwitchPin.validate() &&
-            this.vaporizerRelaySwitchPin && this.vaporizerRelaySwitchPin instanceof GpioPin && this.vaporizerRelaySwitchPin.validate() &&
-            this.indoorDhtDataPin && this.indoorDhtDataPin instanceof GpioPin && this.indoorDhtDataPin.validate() &&
-            this.outdoorDhtDataPin && this.outdoorDhtDataPin instanceof GpioPin && this.outdoorDhtDataPin.validate()
-        );
-    }
-}
 
 
 // StaticOverrideSettings
@@ -1470,7 +1415,6 @@ export class Settings extends AbstractAssertable {
         const power = PowerSettings.fromPlainTree(plainTree.power);
         const time = TimeSettings.fromPlainTree(plainTree.time);
         const wifi = WifiSettings.fromPlainTree(plainTree.wifi);
-        const pin = PinSettings.fromPlainTree(plainTree.pin);
         const webInterface = WebInterfaceSettings.fromPlainTree(plainTree.webInterface);
         return new Settings(
             light,
@@ -1481,7 +1425,6 @@ export class Settings extends AbstractAssertable {
             power,
             time,
             wifi,
-            pin,
             webInterface,
         );
     }
@@ -1494,7 +1437,6 @@ export class Settings extends AbstractAssertable {
         const powerPlainTree = this.power.toPlainTree();
         const timePlainTree = this.time.toPlainTree();
         const wifiPlainTree = this.wifi.toPlainTree();
-        const pinPlainTree = this.pin.toPlainTree();
         const webInterfacePlainTree = this.webInterface.toPlainTree();
 
         const plainTree = {
@@ -1506,7 +1448,6 @@ export class Settings extends AbstractAssertable {
             power: powerPlainTree,
             time: timePlainTree,
             wifi: wifiPlainTree,
-            pin: pinPlainTree,
             webInterface: webInterfacePlainTree,
         }
 
@@ -1521,7 +1462,6 @@ export class Settings extends AbstractAssertable {
         power = new PowerSettings(),
         time = new TimeSettings(),
         wifi = new WifiSettings(),
-        pin = new PinSettings(),
         webInterface = new WebInterfaceSettings(),
     ) {
         super();
@@ -1533,7 +1473,6 @@ export class Settings extends AbstractAssertable {
         this.power = power;
         this.time = time;
         this.wifi = wifi;
-        this.pin = pin;
         this.webInterface = webInterface;
         // old strict assert: this.assert();
     }
@@ -1547,7 +1486,6 @@ export class Settings extends AbstractAssertable {
             this.power && this.power instanceof PowerSettings && this.power.validate() &&
             this.time && this.time instanceof TimeSettings && this.time.validate() &&
             this.wifi && this.wifi instanceof WifiSettings && this.wifi.validate() &&
-            this.pin && this.pin instanceof PinSettings && this.pin.validate() &&
             this.webInterface && this.webInterface instanceof WebInterfaceSettings && this.webInterface.validate()
         );
     }

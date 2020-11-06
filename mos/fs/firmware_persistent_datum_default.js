@@ -150,29 +150,6 @@ module.exports = {
                 isEnabled: false
             }
         },
-        pin: {
-            lightRelaySwitchPin: {
-                idx: 1
-            },
-            fanRelaySwitchPin: {
-                idx: 2
-            },
-            waterRelaySwitchPin: {
-                idx: 3
-            },
-            heaterRelaySwitchPin: {
-                idx: 4
-            },
-            vaporizerRelaySwitchPin: {
-                idx: 5
-            },
-            indoorDhtDataPin: {
-                idx: 14
-            },
-            outdoorDhtDataPin: {
-                idx: 15
-            }
-        },
         sensor: {
             indoorEnvironment: {
                 virtual: {

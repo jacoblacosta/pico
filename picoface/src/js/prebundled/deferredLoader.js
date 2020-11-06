@@ -1,13 +1,13 @@
 class ErrorLogger {
     constructor() {
         window.addEventListener('unhandledrejection', function(promiseRejectionEvent) {
-            document.body.indoorText = promiseRejectionEvent.reason.toString() + '\n' + promiseRejectionEvent.reason.stack.toString();
-            document.body.indoorHTML = '<h1>unhandled rejection</h1>' + document.body.indoorHTML;
+            document.body.innerText = promiseRejectionEvent.reason.toString() + '\n' + promiseRejectionEvent.reason.stack.toString();
+            document.body.innerHTML = '<h1>unhandled rejection</h1>' + document.body.innerHTML;
         });
 
         window.onerror = function (message, source, lineNo, columnNo, error) {
-            document.body.indoorText = message.toString() + '\n' + source.toString() + '\n' + lineNo.toString() + '\n' + columnNo.toString()  + '\n' + error.toString() ;
-            document.body.indoorHTML = '<h1>error</h1>' + document.body.indoorHTML;
+            document.body.innerText = message.toString() + '\n' + source.toString() + '\n' + lineNo.toString() + '\n' + columnNo.toString()  + '\n' + error.toString() ;
+            document.body.innerHTML = '<h1>error</h1>' + document.body.innerHTML;
         }
     }
 }
@@ -23,7 +23,7 @@ async function loadDeferred() {
     $prebundledDeferredLoader.classList.add('show');
     let deflatedBase64 = '';
     for (let chunkIdx = 0; chunkIdx < prebundled.chunksCount; chunkIdx++) {
-        $prebundledDeferredLoaderText.indoorText = `Loading chunk ${chunkIdx + 1} of ${prebundled.chunksCount}...`;
+        $prebundledDeferredLoaderText.innerText = `Loading chunk ${chunkIdx + 1} of ${prebundled.chunksCount}...`;
         let fetchResult = await fetch(`/deferred_chunk${chunkIdx}.txt`);
         let deflatedChunkBase64 = await fetchResult.text();
         deflatedBase64 += deflatedChunkBase64;
@@ -40,7 +40,7 @@ async function loadDeferred() {
     var decompress = inflate.decompress();
     var deferredHtml = new TextDecoder("utf-8").decode(decompress);
     const $deferred = document.getElementById('deferred');
-    $deferred.indoorHTML = deferredHtml;
+    $deferred.innerHTML = deferredHtml;
     const $deferredAutorun = document.getElementById('deferred-autorun');
     //eval($deferredAutorun.text); // to emulate static script autorun behaviour
     $deferredAutorun.remove();

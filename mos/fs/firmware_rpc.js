@@ -41,11 +41,6 @@ module.exports = {
         let isValid = firmware.persistent.plainTreeValidator.wifiSettings(plainTree);
         if (isValid) { return plainTree } else { firmware.logger.error('invalid wifiSettings on get'); }
     },
-    getPinSettings: function() {
-        let plainTree = firmware.persistent.datum.settings.pin;
-        let isValid = firmware.persistent.plainTreeValidator.pinSettings(plainTree);
-        if (isValid) { return plainTree } else { firmware.logger.error('invalid pinSettings on get'); }
-    },
     getSensorSettings: function() {
         let plainTree = firmware.persistent.datum.settings.sensor;
         let isValid = firmware.persistent.plainTreeValidator.sensorSettings(plainTree);
@@ -136,16 +131,6 @@ module.exports = {
             firmware.logger.error('invalid wifiSettings on set');
         }
     },
-    setPinSettings: function(plainTree) {
-        let isValid = firmware.persistent.plainTreeValidator.pinSettings(plainTree);
-        if (isValid) {
-            firmware.persistent.datum.settings.pin = plainTree;
-            firmware.persistent.saveToStorage();
-            hal.restart(); // pin-based tweaks
-        } else {
-            firmware.logger.error('invalid pinSettings on set');
-        }
-    },
     setSensorSettings: function(plainTree) {
         let isValid = firmware.persistent.plainTreeValidator.sensorSettings(plainTree);
         if (isValid) {
@@ -205,7 +190,6 @@ module.exports = {
         hal.rpc.registerCallback('getPowerSettings', firmware.rpc.getPowerSettings);
         hal.rpc.registerCallback('getTimeSettings', firmware.rpc.getTimeSettings);
         hal.rpc.registerCallback('getWifiSettings', firmware.rpc.getWifiSettings);
-        hal.rpc.registerCallback('getPinSettings', firmware.rpc.getPinSettings);
         hal.rpc.registerCallback('getSensorSettings', firmware.rpc.getSensorSettings);
         hal.rpc.registerCallback('getPeripheralSettings', firmware.rpc.getPeripheralSettings);
 
@@ -219,7 +203,6 @@ module.exports = {
         hal.rpc.registerCallback('setPowerSettings', firmware.rpc.setPowerSettings);
         hal.rpc.registerCallback('setTimeSettings', firmware.rpc.setTimeSettings);
         hal.rpc.registerCallback('setWifiSettings', firmware.rpc.setWifiSettings);
-        hal.rpc.registerCallback('setPinSettings', firmware.rpc.setPinSettings);
         hal.rpc.registerCallback('setSensorSettings', firmware.rpc.setSensorSettings);
         hal.rpc.registerCallback('setPeripheralSettings', firmware.rpc.setPeripheralSettings);
     }

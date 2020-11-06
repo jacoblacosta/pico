@@ -152,17 +152,6 @@ module.exports = {
             typeof value.accessPoint === 'object' && firmware.persistent.plainTreeValidator.wifiAccessPointSettingsSection(value.accessPoint)
         );
     },
-    pinSettings: function(value) {
-        return (
-            typeof value.lightRelaySwitchPin === 'object' && firmware.persistent.plainTreeValidator.gpioPin(value.lightRelaySwitchPin) &&
-            typeof value.fanRelaySwitchPin === 'object' && firmware.persistent.plainTreeValidator.gpioPin(value.fanRelaySwitchPin) &&
-            typeof value.waterRelaySwitchPin === 'object' && firmware.persistent.plainTreeValidator.gpioPin(value.waterRelaySwitchPin) &&
-            typeof value.heaterRelaySwitchPin === 'object' && firmware.persistent.plainTreeValidator.gpioPin(value.heaterRelaySwitchPin) &&
-            typeof value.vaporizerRelaySwitchPin === 'object' && firmware.persistent.plainTreeValidator.gpioPin(value.vaporizerRelaySwitchPin) &&
-            typeof value.indoorDhtDataPin === 'object' && firmware.persistent.plainTreeValidator.gpioPin(value.indoorDhtDataPin) &&
-            typeof value.outdoorDhtDataPin === 'object' && firmware.persistent.plainTreeValidator.gpioPin(value.outdoorDhtDataPin)
-        );
-    },
     sensorSettings: function(value) {
         return (
             typeof value.indoorEnvironment === 'object' && firmware.persistent.plainTreeValidator.environmentSensorSettigs(value.indoorEnvironment) &&

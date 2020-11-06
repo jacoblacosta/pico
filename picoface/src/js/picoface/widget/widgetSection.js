@@ -466,10 +466,6 @@ export class IndexOtherWidgetSection extends AbstractWidget {
                 i18nSubtree: i18n.widget.index.other.wifiSettings,
             },
             {
-                routeKey: 'settings/pin',
-                i18nSubtree: i18n.widget.index.other.pinSettings,
-            },
-            {
                 routeKey: 'settings/sensor',
                 i18nSubtree: i18n.widget.index.other.sensorSettings,
             },

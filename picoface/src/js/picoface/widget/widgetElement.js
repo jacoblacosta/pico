@@ -25,10 +25,10 @@ export class BooleanWidgetElement extends AbstractWidget {
         this.unmanaged.$data.classList.add('widget-element-data');
         this.unmanaged.$caption = document.createElement('div')
         this.unmanaged.$caption.classList.add('widget-element-caption');
-        this.unmanaged.$caption.indoorText = this.i18nSubtree.caption;
+        this.unmanaged.$caption.innerText = this.i18nSubtree.caption;
         this.unmanaged.$comment = document.createElement('div')
         this.unmanaged.$comment.classList.add('widget-element-comment');
-        this.unmanaged.$comment.indoorText = this.i18nSubtree.comment;
+        this.unmanaged.$comment.innerText = this.i18nSubtree.comment;
 
         this.unmanaged.$data.appendChild(this.unmanaged.$checkboxInput);
 
@@ -101,15 +101,15 @@ export class IntegerRangeWidgetElement extends AbstractWidget {
         this.unmanaged.$intRangeInput.step = 1;
         this.unmanaged.$valueDisplay = document.createElement('div')
         this.unmanaged.$valueDisplay.classList.add('value-display');
-        this.unmanaged.$valueDisplay.indoorText = '?'; // to not to height-jump after inserting some content;
+        this.unmanaged.$valueDisplay.innerText = '?'; // to not to height-jump after inserting some content;
         this.unmanaged.$data = document.createElement('div')
         this.unmanaged.$data.classList.add('widget-element-data');
         this.unmanaged.$caption = document.createElement('div')
         this.unmanaged.$caption.classList.add('widget-element-caption');
-        this.unmanaged.$caption.indoorText = this.i18nSubtree.caption;
+        this.unmanaged.$caption.innerText = this.i18nSubtree.caption;
         this.unmanaged.$comment = document.createElement('div')
         this.unmanaged.$comment.classList.add('widget-element-comment');
-        this.unmanaged.$comment.indoorText = this.i18nSubtree.comment;
+        this.unmanaged.$comment.innerText = this.i18nSubtree.comment;
 
         this.unmanaged.$rv = document.createElement('div')
         this.unmanaged.$rv.classList.add('rv');
@@ -145,10 +145,10 @@ export class IntegerRangeWidgetElement extends AbstractWidget {
     easy_fromBindedToUnmanagedDom() {
         if (this.binded.rest) {
             this.unmanaged.$intRangeInput.value = this.binded.rest;
-            this.unmanaged.$valueDisplay.indoorText = this.binded.rest.toString();
+            this.unmanaged.$valueDisplay.innerText = this.binded.rest.toString();
         } else {
             this.unmanaged.$intRangeInput.value = 0;
-            this.unmanaged.$valueDisplay.indoorText = '0';
+            this.unmanaged.$valueDisplay.innerText = '0';
         }
 
         this.unmanaged.$intRangeInput.disabled = this.binded.state.shared.isDisabled;
@@ -193,15 +193,15 @@ export class RatioRangeWidgetElement extends AbstractWidget {
         this.unmanaged.$intRangeInput.step = 0.01;
         this.unmanaged.$valueDisplay = document.createElement('div');
         this.unmanaged.$valueDisplay.classList.add('value-display');
-        this.unmanaged.$valueDisplay.indoorText = '?'; // to not to height-jump after inserting some content;
+        this.unmanaged.$valueDisplay.innerText = '?'; // to not to height-jump after inserting some content;
         this.unmanaged.$data = document.createElement('div')
         this.unmanaged.$data.classList.add('widget-element-data');
         this.unmanaged.$caption = document.createElement('div')
         this.unmanaged.$caption.classList.add('widget-element-caption');
-        this.unmanaged.$caption.indoorText = this.i18nSubtree.caption;
+        this.unmanaged.$caption.innerText = this.i18nSubtree.caption;
         this.unmanaged.$comment = document.createElement('div')
         this.unmanaged.$comment.classList.add('widget-element-comment');
-        this.unmanaged.$comment.indoorText = this.i18nSubtree.comment;
+        this.unmanaged.$comment.innerText = this.i18nSubtree.comment;
 
         this.unmanaged.$rv = document.createElement('div')
         this.unmanaged.$rv.classList.add('rv');
@@ -237,10 +237,10 @@ export class RatioRangeWidgetElement extends AbstractWidget {
     easy_fromBindedToUnmanagedDom() {
         if (this.binded.rest) {
             this.unmanaged.$intRangeInput.value = this.binded.rest;
-            this.unmanaged.$valueDisplay.indoorText = (this.binded.rest * 100).toFixed(1) + '%';
+            this.unmanaged.$valueDisplay.innerText = (this.binded.rest * 100).toFixed(1) + '%';
         } else {
             this.unmanaged.$intRangeInput.value = 0;
-            this.unmanaged.$valueDisplay.indoorText = '0%';
+            this.unmanaged.$valueDisplay.innerText = '0%';
         }
 
         this.unmanaged.$intRangeInput.disabled = this.binded.state.shared.isDisabled;
@@ -287,10 +287,10 @@ export class TextWidgetElement extends AbstractWidget {
         this.unmanaged.$data.classList.add('widget-element-data');
         this.unmanaged.$caption = document.createElement('div')
         this.unmanaged.$caption.classList.add('widget-element-caption');
-        this.unmanaged.$caption.indoorText = this.i18nSubtree.caption;
+        this.unmanaged.$caption.innerText = this.i18nSubtree.caption;
         this.unmanaged.$comment = document.createElement('div')
         this.unmanaged.$comment.classList.add('widget-element-comment');
-        this.unmanaged.$comment.indoorText = this.i18nSubtree.comment;
+        this.unmanaged.$comment.innerText = this.i18nSubtree.comment;
 
 
         this.unmanaged.$data.appendChild(this.unmanaged.$textInput);
@@ -364,10 +364,10 @@ export class GpioPinWidgetElement extends AbstractWidget {
         this.$data.classList.add('widget-element-data');
         this.$caption = document.createElement('div')
         this.$caption.classList.add('widget-element-caption');
-        this.$caption.indoorText = this.i18nSubtree.caption;
+        this.$caption.innerText = this.i18nSubtree.caption;
         this.$comment = document.createElement('div')
         this.$comment.classList.add('widget-element-comment');
-        this.$comment.indoorText = this.i18nSubtree.comment;
+        this.$comment.innerText = this.i18nSubtree.comment;
         this.$data.appendChild(this.unmanaged.$select);
         this.$container.appendChild(this.$caption);
         this.$container.appendChild(this.$data);
@@ -423,7 +423,7 @@ export class SmartOutputPinWidgetElement extends AbstractWidget {
     }
     refillModeKeySelectOptions() {
         let selectedValue = this.unmanaged.$modeKeySelect.value;
-        this.unmanaged.$modeKeySelect.indoorHTML = '';
+        this.unmanaged.$modeKeySelect.innerHTML = '';
         if (this.binded.state.shared.isExtenderEnabled) {
             const $option = document.createElement('option')
             $option.classList.add('widget-element-select-option');
@@ -445,7 +445,7 @@ export class SmartOutputPinWidgetElement extends AbstractWidget {
     }
     refillIdxSelectOptions() {
         let selectedValue = this.unmanaged.$idxSelect.value;
-        this.unmanaged.$idxSelect.indoorHTML = '';
+        this.unmanaged.$idxSelect.innerHTML = '';
         if (!this.binded.rest) {
             // do nothing
         } else if (this.binded.rest.modeKey === 'raw') {
@@ -488,10 +488,10 @@ export class SmartOutputPinWidgetElement extends AbstractWidget {
         this.$data.classList.add('widget-element-data');
         this.$caption = document.createElement('div')
         this.$caption.classList.add('widget-element-caption');
-        this.$caption.indoorText = this.i18nSubtree.caption;
+        this.$caption.innerText = this.i18nSubtree.caption;
         this.$comment = document.createElement('div')
         this.$comment.classList.add('widget-element-comment');
-        this.$comment.indoorText = this.i18nSubtree.comment;
+        this.$comment.innerText = this.i18nSubtree.comment;
         this.$data.appendChild(this.unmanaged.$modeKeySelect);
         this.$data.appendChild(this.unmanaged.$idxSelect);
         this.$container.appendChild(this.$caption);
@@ -567,20 +567,20 @@ export class Time24WidgetElement extends AbstractWidget {
         this.unmanaged.$sInput.type = 'number';
         this.unmanaged.$hmDelimeter = document.createElement('div');
         this.unmanaged.$hmDelimeter.classList.add('delimeter');
-        this.unmanaged.$hmDelimeter.indoorText = ":";
+        this.unmanaged.$hmDelimeter.innerText = ":";
         this.unmanaged.$msDelimeter = document.createElement('div');
         this.unmanaged.$msDelimeter.classList.add('delimeter');
-        this.unmanaged.$msDelimeter.indoorText = ":";
+        this.unmanaged.$msDelimeter.innerText = ":";
         this.unmanaged.$hms = document.createElement('div')
         this.unmanaged.$hms.classList.add('hms');
         this.unmanaged.$data = document.createElement('div')
         this.unmanaged.$data.classList.add('widget-element-data');
         this.unmanaged.$caption = document.createElement('div')
         this.unmanaged.$caption.classList.add('widget-element-caption');
-        this.unmanaged.$caption.indoorText = this.i18nSubtree.caption;
+        this.unmanaged.$caption.innerText = this.i18nSubtree.caption;
         this.unmanaged.$comment = document.createElement('div')
         this.unmanaged.$comment.classList.add('widget-element-comment');
-        this.unmanaged.$comment.indoorText = this.i18nSubtree.comment;
+        this.unmanaged.$comment.innerText = this.i18nSubtree.comment;
 
 
         this.unmanaged.$hInput.min = 0;
@@ -776,11 +776,11 @@ export class SectionTitleWidgetElement extends AbstractWidget {
         this.unmanaged.$subtitle = document.createElement('div');
         this.unmanaged.$subtitle.classList.add('widget-section-subtitle');
         this.unmanaged.$subtitle.classList.add('level-' + this.options.level);
-        this.unmanaged.$subtitle.indoorText = this.i18nSubtree.caption;
+        this.unmanaged.$subtitle.innerText = this.i18nSubtree.caption;
 
         this.unmanaged.$comment = document.createElement('div');
         this.unmanaged.$comment.classList.add('widget-section-comment');
-        this.unmanaged.$comment.indoorText = this.i18nSubtree.comment;
+        this.unmanaged.$comment.innerText = this.i18nSubtree.comment;
 
         this.$container.appendChild(this.unmanaged.$hr);
         this.$container.appendChild(this.unmanaged.$subtitle);
@@ -843,7 +843,7 @@ export class SectionTitleWithCheckboxWidgetElement extends AbstractWidget {
         this.unmanaged.$subtitle = document.createElement('div');
         this.unmanaged.$subtitle.classList.add('widget-section-subtitle');
         this.unmanaged.$subtitle.classList.add('level-' + this.options.level);
-        this.unmanaged.$subtitle.indoorText = this.i18nSubtree.caption;
+        this.unmanaged.$subtitle.innerText = this.i18nSubtree.caption;
         this.unmanaged.$data = document.createElement('div')
         this.unmanaged.$data.classList.add('widget-element-data');
         this.unmanaged.$checkboxInput = document.createElement('input');
@@ -851,7 +851,7 @@ export class SectionTitleWithCheckboxWidgetElement extends AbstractWidget {
         this.unmanaged.$checkboxInput.type = 'checkbox';
         this.unmanaged.$comment = document.createElement('div');
         this.unmanaged.$comment.classList.add('widget-section-comment');
-        this.unmanaged.$comment.indoorText = this.i18nSubtree.comment;
+        this.unmanaged.$comment.innerText = this.i18nSubtree.comment;
 
         this.unmanaged.$data.appendChild(this.unmanaged.$checkboxInput);
         this.unmanaged.$row.appendChild(this.unmanaged.$subtitle);
@@ -921,7 +921,7 @@ export class SaveSettingsButtonWidgetElement extends AbstractWidget {
         this.unmanaged.$data.classList.add('widget-element-data');
         this.unmanaged.$comment = document.createElement('div')
         this.unmanaged.$comment.classList.add('widget-element-comment');
-        this.unmanaged.$comment.indoorText = this.i18nSubtree.comment;
+        this.unmanaged.$comment.innerText = this.i18nSubtree.comment;
 
         this.unmanaged.$button.addEventListener('click', () => { this.ee.emit('save'); });
         //this.unmanaged.$button.addEventListener('submit', () => { this.ee.emit('save'); });
@@ -998,10 +998,10 @@ export class ManualOverrideElement extends AbstractWidget {
         this.unmanaged.$caption = document.createElement('div')
         this.unmanaged.$caption.classList.add('widget-element-caption');
         this.unmanaged.$caption.classList.add('verbose');
-        this.unmanaged.$caption.indoorText = this.i18nSubtree.caption;
+        this.unmanaged.$caption.innerText = this.i18nSubtree.caption;
         this.unmanaged.$comment = document.createElement('div')
         this.unmanaged.$comment.classList.add('widget-element-comment');
-        this.unmanaged.$comment.indoorText = this.i18nSubtree.comment;
+        this.unmanaged.$comment.innerText = this.i18nSubtree.comment;
 
 
         this.unmanaged.$autoButton.addEventListener('click', () => { this.onDomClick(undefined); });
@@ -1092,10 +1092,10 @@ export class TextViewerElement extends AbstractWidget {
         this.unmanaged.$data.classList.add('widget-element-data');
         this.unmanaged.$caption = document.createElement('div')
         this.unmanaged.$caption.classList.add('widget-element-caption');
-        this.unmanaged.$caption.indoorText = this.i18nSubtree.caption;
+        this.unmanaged.$caption.innerText = this.i18nSubtree.caption;
         this.unmanaged.$comment = document.createElement('div')
         this.unmanaged.$comment.classList.add('widget-element-comment');
-        this.unmanaged.$comment.indoorText = this.i18nSubtree.comment;
+        this.unmanaged.$comment.innerText = this.i18nSubtree.comment;
 
         this.unmanaged.$data.appendChild(this.unmanaged.$textDisplay);
         this.$container.appendChild(this.unmanaged.$caption);
@@ -1121,9 +1121,9 @@ export class TextViewerElement extends AbstractWidget {
     easy_fromBindedToUnmanagedDom() {
         const valueFromApi = this.binded[this.options.apiKey];
         if (valueFromApi) {
-            this.unmanaged.$textDisplay.indoorText = valueFromApi.toString();
+            this.unmanaged.$textDisplay.innerText = valueFromApi.toString();
         } else {
-            this.unmanaged.$textDisplay.indoorText = '';
+            this.unmanaged.$textDisplay.innerText = '';
         }
     }
     async easy_saveToRestApi() {
@@ -1164,9 +1164,9 @@ export class BooleanViewerElement extends TextViewerElement {
     easy_fromBindedToUnmanagedDom() {
         const valueFromApi = this.binded[this.options.apiKey];
         if (valueFromApi) {
-            this.unmanaged.$textDisplay.indoorText = i18n.widgetElement.boolean.yes;
+            this.unmanaged.$textDisplay.innerText = i18n.widgetElement.boolean.yes;
         } else {
-            this.unmanaged.$textDisplay.indoorText = i18n.widgetElement.boolean.no;
+            this.unmanaged.$textDisplay.innerText = i18n.widgetElement.boolean.no;
         }
     }
 }
@@ -1185,13 +1185,13 @@ export class LinkWidgetElement extends AbstractWidget {
         this.unmanaged.$link = document.createElement('a');
         this.unmanaged.$link.classList.add('widget-link');
         this.unmanaged.$link.href = '#' + this.options.routeKey;
-        this.unmanaged.$link.indoorText = this.i18nSubtree.caption;
+        this.unmanaged.$link.innerText = this.i18nSubtree.caption;
         this.unmanaged.$link.addEventListener('click', () => { this.ee.emit('link', this.i18nSubtree.caption); });
         this.unmanaged.$data = document.createElement('div')
         this.unmanaged.$data.classList.add('widget-element-data');
         this.unmanaged.$comment = document.createElement('div')
         this.unmanaged.$comment.classList.add('widget-element-comment');
-        this.unmanaged.$comment.indoorText = this.i18nSubtree.comment;
+        this.unmanaged.$comment.innerText = this.i18nSubtree.comment;
 
         this.unmanaged.$data.appendChild(this.unmanaged.$link);
         this.$container.appendChild(this.unmanaged.$data);
@@ -1248,9 +1248,9 @@ export class TitleWidgetElement extends AbstractWidget {
         this.unmanaged.$titleParentLink = document.createElement('a');
         this.unmanaged.$titleParentLink.href = '#settings/index';
         this.unmanaged.$titleParentLink.classList.add('widget-title-parent-link');
-        this.unmanaged.$titleParentLink.indoorText = i18n.widget.index.title.caption;
+        this.unmanaged.$titleParentLink.innerText = i18n.widget.index.title.caption;
         this.unmanaged.$titleSpan = document.createElement('span');
-        this.unmanaged.$titleSpan.indoorText = ' → ' + this.i18nSubtree.caption;
+        this.unmanaged.$titleSpan.innerText = ' → ' + this.i18nSubtree.caption;
 
         this.unmanaged.$title.appendChild(this.unmanaged.$titleParentLink);
         this.unmanaged.$title.appendChild(this.unmanaged.$titleSpan);
@@ -1304,7 +1304,7 @@ export class IndexTitleWidgetElement extends AbstractWidget {
 
         this.unmanaged.$title = document.createElement('div');
         this.unmanaged.$title.classList.add('widget-title');
-        this.unmanaged.$title.indoorText = this.i18nSubtree.caption;
+        this.unmanaged.$title.innerText = this.i18nSubtree.caption;
 
         this.$container.appendChild(this.unmanaged.$title);
     }
@@ -1359,11 +1359,11 @@ export class FooterWidgetElement extends AbstractWidget {
 
         this.unmanaged.$footerCaption = document.createElement('div');
         this.unmanaged.$footerCaption.classList.add('widget-footer-caption');
-        this.unmanaged.$footerCaption.indoorText = this.i18nSubtree.caption;
+        this.unmanaged.$footerCaption.innerText = this.i18nSubtree.caption;
 
         this.unmanaged.$footerComment = document.createElement('div');
         this.unmanaged.$footerComment.classList.add('widget-footer-comment');
-        this.unmanaged.$footerComment.indoorText = this.i18nSubtree.comment;
+        this.unmanaged.$footerComment.innerText = this.i18nSubtree.comment;
 
         this.unmanaged.$footer.appendChild(this.unmanaged.$footerCaption);
         this.unmanaged.$footer.appendChild(this.unmanaged.$footerComment);
@@ -1424,7 +1424,7 @@ export class ScapeWidgetElement extends AbstractWidget {
 
         this.unmanaged.$flatSvg = document.createElement('div');
         this.unmanaged.$flatSvg.classList.add('flat-svg');
-        this.unmanaged.$flatSvg.indoorHTML = flatSvgCode;
+        this.unmanaged.$flatSvg.innerHTML = flatSvgCode;
 
         this.unmanaged.$liveData = document.createElement('div');
         this.unmanaged.$liveData.classList.add('widget-element-live-data');
@@ -1621,10 +1621,10 @@ export class EnvironmentSensorSensorTypeWidgetElement extends AbstractWidget {
         this.$data.classList.add('widget-element-data');
         this.$caption = document.createElement('div')
         this.$caption.classList.add('widget-element-caption');
-        this.$caption.indoorText = this.i18nSubtree.caption;
+        this.$caption.innerText = this.i18nSubtree.caption;
         this.$comment = document.createElement('div')
         this.$comment.classList.add('widget-element-comment');
-        this.$comment.indoorText = this.i18nSubtree.comment;
+        this.$comment.innerText = this.i18nSubtree.comment;
         this.$data.appendChild(this.unmanaged.$select);
         this.$container.appendChild(this.$caption);
         this.$container.appendChild(this.$data);

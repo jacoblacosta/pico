@@ -567,64 +567,6 @@ export class TimeSettingsEditorWidget extends AbstractWidget {
         //do nothing
     }
 }
-
-export class PinSettingsEditorWidget extends AbstractWidget {
-    constructor($parent) {
-        const ladder = new Ladder();
-        super($parent, ladder, i18n.widget.pinSettings, {isLoadFromRestApi: true, isSaveToRestApi: true, isLadderRoot: true});
-    }
-    easy_buildDom() {
-        this.$container.classList.add('root-widget-container');
-        this.managed.title = new TitleWidgetElement(this.$container, this.ladder, this.i18nSubtree.title);
-        this.managed.lightRelaySwitchPin = new GpioPinWidgetElement(this.$container, this.ladder, this.i18nSubtree.lightRelaySwitchPin);
-        this.managed.fanRelaySwitchPin = new GpioPinWidgetElement(this.$container, this.ladder, this.i18nSubtree.fanRelaySwitchPin);
-        this.managed.waterRelaySwitchPin = new GpioPinWidgetElement(this.$container, this.ladder, this.i18nSubtree.waterRelaySwitchPin);
-        this.managed.heaterRelaySwitchPin = new GpioPinWidgetElement(this.$container, this.ladder, this.i18nSubtree.heaterRelaySwitchPin);
-        this.managed.vaporizerRelaySwitchPin = new GpioPinWidgetElement(this.$container, this.ladder, this.i18nSubtree.vaporizerRelaySwitchPin);
-        this.managed.indoorDhtDataPin = new GpioPinWidgetElement(this.$container, this.ladder, this.i18nSubtree.indoorDhtDataPin);
-        this.managed.outdoorDhtDataPin = new GpioPinWidgetElement(this.$container, this.ladder, this.i18nSubtree.outdoorDhtDataPin);
-        this.managed.save = new SaveSettingsWidgetSection(this.$container, this.ladder, this.i18nSubtree.save);
-        this.managed.footer = new FooterWidgetElement(this.$container, this.ladder, i18n.widgetElement.footer);
-        this.managed.save.ee.on('save', () => {this.ee.emit('save'); });
-    }
-    easy_destroy() {
-        // do nothimg
-    }
-    easy_fromBindedRestToBindedState() {
-        // do nothing
-    }
-    easy_fromBindedLiveToBindedState() {
-        // do nothing
-    }
-    easy_validateBindedRest() {
-        return this.binded.rest && this.binded.rest.validate();
-    }
-    easy_fromUnmanagedDomToBindedRest() {
-        // do nothimg
-    }
-    easy_fromBindedToUnmanagedDom() {
-        // do nothing
-    }
-    async easy_saveToRestApi() {
-        await picoface.restApi.setPinSettings(this.binded.rest);
-    }
-    async easy_loadFromRestApi() {
-        return await picoface.restApi.getPinSettings();
-    }
-    async easy_loadOnceFromLiveApi() {
-        //do nothing
-    }
-    easy_subscribeToLiveApi(callback) {
-        //do nothing
-    }
-    easy_unsubscribeToLiveApi() {
-        //do nothing
-    }
-    easy_loadFromLiveApiEvent(liveApiValue) {
-        //do nothing
-    }
-}
-
 export class SensorSettingsEditorWidget extends AbstractWidget {
     constructor($parent) {
         const ladder = new Ladder();

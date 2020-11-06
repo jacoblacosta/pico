@@ -12,7 +12,7 @@ export class Splash {
         this.$container.classList.add('splash-container');
         this.$message = document.createElement('div');
         this.$message.classList.add('splash-message');
-        this.$message.indoorText = this.messageText;
+        this.$message.innerText = this.messageText;
         this.$container.appendChild(this.$message);
         picoface.$appRoot.appendChild(this.$container);
 

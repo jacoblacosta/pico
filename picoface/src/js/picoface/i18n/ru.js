@@ -48,10 +48,6 @@ export const i18n = {
                 caption: 'Точка доступа Wifi',
                 comment: 'настройка имени и пароля для точки доступа',
             },
-            pinSettings: {
-                caption: 'Подключение устройств',
-                comment: 'настройка подключения входящих и выходящих каналов: реле и датчиков',
-            },
             basicStats: {
                 caption: 'Базовая телеметрия',
                 comment: 'показания датчиков температуры и влажности в боксе, состояние реле, внутреннее время контроллера',
@@ -290,43 +286,6 @@ export const i18n = {
             },
             saveButton: {
                 caption: 'Сохранить изменения в контроллер',
-                comment: 'кнопка сохраняет изменения внесённые пользователем в данной вкладке, которые вступять в силу после перезагрузки контроллера',
-            },
-        },
-
-        ///// pin
-        pinSettings: {
-            title: 'Подключение устройств',
-            lightRelaySwitchPin: {
-                caption: 'Пин управления светом',
-                comment: 'harware pin',
-            },
-            fanRelaySwitchPin: {
-                caption: 'Пин управления вентиляцией',
-                comment: 'harware pin',
-            },
-            waterRelaySwitchPin: {
-                caption: 'Пин управления поливом',
-                comment: 'harware pin',
-            },
-            heaterRelaySwitchPin: {
-                caption: 'Пин управления обогревом',
-                comment: 'harware pin',
-            },
-            vaporizerRelaySwitchPin: {
-                caption: 'Пин управления увлажнителем',
-                comment: 'harware pin',
-            },
-            indoorDhtDataPin: {
-                caption: 'Пин внутренего датчика DHT',
-                comment: 'harware pin',
-            },
-            outdoorDhtDataPin: {
-                caption: 'outdoor dht sensor data pin',
-                comment: 'harware pin',
-            },
-            saveButton: {
-                caption: 'Сохранить изменения и перезагрузить контроллер',
                 comment: 'кнопка сохраняет изменения внесённые пользователем в данной вкладке, которые вступять в силу после перезагрузки контроллера',
             },
         },

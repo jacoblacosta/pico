@@ -9,7 +9,6 @@ import {
     PowerSettings,
     TimeSettings,
     WifiSettings,
-    PinSettings,
     SensorSettings,
     PeripheralSettings,
     //WebInterfaceSettings,
@@ -104,17 +103,6 @@ export class ClientRestApi {
         const wifiSettings = WifiSettings.fromPlainTree(plainTree);
         wifiSettings.assert();
         return wifiSettings;
-    }
-    async getPinSettings() {
-        const response = await fetch('/rpc/getPinSettings', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', },
-            body: null,
-        });
-        const plainTree = await response.json();
-        const pinSettings = PinSettings.fromPlainTree(plainTree);
-        pinSettings.assert();
-        return pinSettings;
     }
     async getSensorSettings() {
         const response = await fetch('/rpc/getSensorSettings', {
@@ -238,18 +226,6 @@ export class ClientRestApi {
         const plainTree = wifiSettings.toPlainTree();
         const plainTreeJson = JSON.stringify(plainTree);
         await fetch('/rpc/setWifiSettings', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: plainTreeJson,
-        });
-    }
-    async setPinSettings(pinSettings) {
-        pinSettings.assert();
-        const plainTree = pinSettings.toPlainTree();
-        const plainTreeJson = JSON.stringify(plainTree);
-        await fetch('/rpc/setPinSettings', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
