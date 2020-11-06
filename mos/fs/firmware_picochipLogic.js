@@ -1,5 +1,3 @@
-const firmware = require('./firmware');
-
 //print('### in picochipLogic.js head');
 module.exports = {
     iteration: function() {

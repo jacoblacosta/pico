@@ -23,7 +23,7 @@ class PinboardSimulator {
         // extended pins
 
         this.extenderDigitalOutputSimulatorPinProxies = [];
-        this.extenderDigitalOutputSimulatorPinProxies[7] = this.digitalVaporizerRelaySwitchSimulator.pinProxy;
+        this.extenderDigitalOutputSimulatorPinProxies[6] = this.digitalVaporizerRelaySwitchSimulator.pinProxy;
 
         // extender simulator
 

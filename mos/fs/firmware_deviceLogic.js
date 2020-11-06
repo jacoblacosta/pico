@@ -1,5 +1,3 @@
-const firmware = require('./firmware');
-
 //print('### in deviceLogic.js head');
 module.exports = {
     lightRelaySwitch: {
@@ -27,7 +25,7 @@ module.exports = {
         },
         updateIsRelaySwitchedOn: function(isRelaySwitchedOn) {
             if (this.isRelaySwitchedOn !== isRelaySwitchedOn) {
-                hal.relaySwitch.light.write(isRelaySwitchedOn);
+                firmware.relaySwitch.light.write(isRelaySwitchedOn);
             }
             this.isRelaySwitchedOn = isRelaySwitchedOn;
         },
@@ -58,7 +56,7 @@ module.exports = {
         },
         updateIsRelaySwitchedOn: function(isRelaySwitchedOn) {
             if (this.isRelaySwitchedOn !== isRelaySwitchedOn) {
-                hal.relaySwitch.fan.write(isRelaySwitchedOn);
+                firmware.relaySwitch.fan.write(isRelaySwitchedOn);
             }
             this.isRelaySwitchedOn = isRelaySwitchedOn;
         },
@@ -92,7 +90,7 @@ module.exports = {
         },
         updateIsRelaySwitchedOn: function(isRelaySwitchedOn) {
             if (this.isRelaySwitchedOn !== isRelaySwitchedOn) {
-                hal.relaySwitch.water.write(isRelaySwitchedOn);
+                firmware.relaySwitch.water.write(isRelaySwitchedOn);
             }
             this.isRelaySwitchedOn = isRelaySwitchedOn;
         },
@@ -123,7 +121,7 @@ module.exports = {
         },
         updateIsRelaySwitchedOn: function(isRelaySwitchedOn) {
             if (this.isRelaySwitchedOn !== isRelaySwitchedOn) {
-                hal.relaySwitch.heater.write(isRelaySwitchedOn);
+                firmware.relaySwitch.heater.write(isRelaySwitchedOn);
             }
             this.isRelaySwitchedOn = isRelaySwitchedOn;
         },
@@ -154,7 +152,7 @@ module.exports = {
         },
         updateIsRelaySwitchedOn: function(isRelaySwitchedOn) {
             if (this.isRelaySwitchedOn !== isRelaySwitchedOn) {
-                hal.relaySwitch.vaporizer.write(isRelaySwitchedOn);
+                firmware.relaySwitch.vaporizer.write(isRelaySwitchedOn);
             }
             this.isRelaySwitchedOn = isRelaySwitchedOn;
         },

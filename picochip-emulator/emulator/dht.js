@@ -7,8 +7,8 @@ class DhtManagerEmulator {
         init: (pinIdx) => {
             const dhtSimulatorPinProxy = this.dhtSimulatorPinProxies[pinIdx];
             if (dhtSimulatorPinProxy) {
-                const outputEmulator = new DhtEmulator(dhtSimulatorPinProxy, isInitialHigh);
-                outputEmulators[pinIdx] = outputEmulator;
+                const outputEmulator = new DhtEmulator(dhtSimulatorPinProxy);
+                this.outputEmulators[pinIdx] = outputEmulator;
                 return outputEmulator.hal;
             } else {
                 return false;
@@ -17,13 +17,12 @@ class DhtManagerEmulator {
     }
 }
 class DhtEmulator {
-    constructor(dhtSimulatorPinProxy, isInitialHigh) {
+    constructor(dhtSimulatorPinProxy) {
         this.dhtSimulatorPinProxy = dhtSimulatorPinProxy;
-        this.hal.write(isInitialHigh);
     }
     hal = {
-        write: (isHigh) => {
-            return this.dhtSimulatorPinProxy.write(isHigh);
+        read: () => {
+            return this.dhtSimulatorPinProxy.read();
         }
     }
 }

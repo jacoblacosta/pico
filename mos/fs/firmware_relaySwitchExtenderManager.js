@@ -27,7 +27,7 @@ module.exports = {
                 extender.shiftClockPin.write(false);
                 extender.latchClockPin.write(false);
                 hal.delay(100);
-                for (let i = 0; i < capacity; i++) {
+                for (let i = extender.capacity - 1; i >= 0; i--) {
                     let register = extender.registers[i];
                     extender.dataPin.write(register);
                     hal.delay(100);

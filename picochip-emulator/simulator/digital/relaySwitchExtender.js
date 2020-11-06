@@ -7,9 +7,9 @@ class DigitalRelaySwitchExtenderSimulator {
     constructor(capacity, digitalOutputSimulatorPinProxies) {
         this.digitalOutputSimulatorPinProxies = digitalOutputSimulatorPinProxies;
         this.capacity = capacity;
-        this.indoorRegisters = [];
+        this.innerRegisters = [];
         for (let i = 0; i < this.capacity; i++) {
-            this.indoorRegisters[i] = false;
+            this.innerRegisters[i] = false;
         }
         this.dataPinProxy = new DigitalOutputSimulatorPinProxy(false, (isHigh) => { this.onDataWrite(isHigh); })
         this.shiftClockPinProxy = new DigitalOutputSimulatorPinProxy(false, (isHigh) => { this.onShiftClockWrite(isHigh); })
@@ -34,15 +34,15 @@ class DigitalRelaySwitchExtenderSimulator {
         return true;
     }
     shift(isHigh) {
-        for (let i = 1; i < this.capacity; i++) {
-            this.indoorRegisters[i] = this.indoorRegisters[i - 1];
+        for (let i = this.capacity - 1; i > 0; i--) {
+            this.innerRegisters[i] = this.innerRegisters[i - 1];
         }
-        this.indoorRegisters[0] = isHigh;
+        this.innerRegisters[0] = isHigh;
     }
     latch() {
         for (let i = 0; i < this.capacity; i++) {
-            const isHigh = this.indoorRegisters[i];
-            const digitalOutputSimulatorPinProxy = digitalOutputSimulatorPinProxies[i];
+            const isHigh = this.innerRegisters[i];
+            const digitalOutputSimulatorPinProxy = this.digitalOutputSimulatorPinProxies[i];
             if (digitalOutputSimulatorPinProxy) {
                 digitalOutputSimulatorPinProxy.write(isHigh);
             }
