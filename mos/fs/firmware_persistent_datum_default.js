@@ -166,15 +166,15 @@ module.exports = {
             vaporizerRelaySwitchPin: {
                 idx: 5
             },
-            innerDhtDataPin: {
+            indoorDhtDataPin: {
                 idx: 14
             },
-            outerDhtDataPin: {
+            outdoorDhtDataPin: {
                 idx: 15
             }
         },
         sensor: {
-            innerEnvironment: {
+            indoorEnvironment: {
                 virtual: {
                     staticOverride: {
                         temperature: 25,
@@ -214,7 +214,7 @@ module.exports = {
                     typeKey: 'virtual',
                 }
             },
-            outerEnvironment: {
+            outdoorEnvironment: {
                 virtual: {
                     staticOverride: {
                         temperature: 25,

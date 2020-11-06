@@ -1,3 +1,5 @@
+const firmware = require('./firmware');
+
 //print('### in deviceLogic.js head');
 module.exports = {
     lightRelaySwitch: {
@@ -14,7 +16,7 @@ module.exports = {
                 let currentTime24 = firmware.clock.internalSecondsToTime24(currentInternalSeconds);
                 let isInDutyTimespan = firmware.clock.isTime24inTimespan24(currentTime24, dutyTimespan24);
                 if (isInDutyTimespan) {
-                    let currentIndoorTemperature = hal.sensor.innerDht.read().indoorTemperature;
+                    let currentIndoorTemperature = firmware.sensor.indoorEnvironment.read().temperature;
                     let hysteresis = this.isRelaySwitchedOn ? +0.25 : -0.25;
                     let isInThreshold = (currentIndoorTemperature < lightSettings.indoorTemperatureThreshold.temperatureThreshold + hysteresis);
                     this.updateIsRelaySwitchedOn(isInThreshold);
@@ -45,7 +47,7 @@ module.exports = {
                 let currentTime24 = firmware.clock.internalSecondsToTime24(currentInternalSeconds);
                 let isInDutyTimespan = firmware.clock.isTime24inTimespan24(currentTime24, dutyTimespan24);
                 if (isInDutyTimespan) {
-                    let currentIndoorTemperature = hal.sensor.innerDht.read().indoorTemperature;
+                    let currentIndoorTemperature = firmware.sensor.indoorEnvironment.read().temperature;
                     let hysteresis = this.isRelaySwitchedOn ? -0.25 : +0.25;
                     let isInThreshold = currentIndoorTemperature >= fanSettings.indoorTemperatureThreshold.temperatureThreshold + hysteresis;
                     this.updateIsRelaySwitchedOn(isInThreshold);
@@ -110,7 +112,7 @@ module.exports = {
                 let currentTime24 = firmware.clock.internalSecondsToTime24(currentInternalSeconds);
                 let isInDutyTimespan = firmware.clock.isTime24inTimespan24(currentTime24, dutyTimespan24);
                 if (isInDutyTimespan) {
-                    let currentIndoorTemperature = hal.sensor.innerDht.read().indoorTemperature;
+                    let currentIndoorTemperature = firmware.sensor.indoorEnvironment.read().temperature;
                     let hysteresis = this.isRelaySwitchedOn ? +0.25 : -0.25;
                     let isInThreshold = currentIndoorTemperature < heaterSettings.indoorTemperatureThreshold.temperatureThreshold + hysteresis;
                     this.updateIsRelaySwitchedOn(isInThreshold);
@@ -141,7 +143,7 @@ module.exports = {
                 let currentTime24 = firmware.clock.internalSecondsToTime24(currentInternalSeconds);
                 let isInDutyTimespan = firmware.clock.isTime24inTimespan24(currentTime24, dutyTimespan24);
                 if (isInDutyTimespan) {
-                    let currentIndoorHumidity = hal.sensor.innerDht.read().indoorHumidity;
+                    let currentIndoorHumidity = firmware.sensor.indoorEnvironment.read().humidity;
                     let hysteresis = this.isRelaySwitchedOn ? +0.25 : -0.25;
                     let isInThreshold = currentIndoorHumidity < vaporizerSettings.indoorHumidityThreshold + hysteresis;
                     this.updateIsRelaySwitchedOn(isInThreshold);

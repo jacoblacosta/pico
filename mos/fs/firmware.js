@@ -3,6 +3,11 @@ module.exports = {
     clock: require('./firmware_clock.js'),
     persistent: require('./firmware_persistent.js'),
     rpc: require('./firmware_rpc.js'),
+    relaySwitchManager: require('./firmware_relaySwitchManager.js'),
+    relaySwitchExtenderManager: require('./firmware_relaySwitchExtenderManager.js'),
+    relaySwitch: require('./firmware_relaySwitch.js'),
+    sensorManager: require('./firmware_sensorManager.js'),
+    sensor: require('./firmware_sensor.js'),
     deviceLogic: require('./firmware_deviceLogic.js'),
     picochipLogic: require('./firmware_picochipLogic.js'),
     startupInternalSeconds: hal.getCurrentInternalSeconds(),
@@ -12,15 +17,8 @@ module.exports = {
 
         firmware.persistent.start();
         firmware.rpc.start();
-
-        let pinSettings = firmware.persistent.datum.settings.pin;
-        hal.relaySwitch.light.init(pinSettings.lightRelaySwitchPin.idx);
-        hal.relaySwitch.fan.init(pinSettings.fanRelaySwitchPin.idx);
-        hal.relaySwitch.water.init(pinSettings.waterRelaySwitchPin.idx);
-        hal.relaySwitch.heater.init(pinSettings.heaterRelaySwitchPin.idx);
-        hal.relaySwitch.vaporizer.init(pinSettings.vaporizerRelaySwitchPin.idx);
-        hal.sensor.innerDht.init(pinSettings.innerDhtDataPin.idx);
-        hal.sensor.outerDht.init(pinSettings.outerDhtDataPin.idx);
+        firmware.relaySwitch.start();
+        firmware.sensor.start();
 
         function loop() {
             let healthLogThrottlingSeconds = 60;

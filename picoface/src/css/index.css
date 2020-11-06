@@ -481,7 +481,7 @@ scape
 }
 /* groups */
 
-.scape .flat-svg.highlight .group-outer-light,
+.scape .flat-svg.highlight .group-outdoor-light,
 .scape .flat-svg.highlight .group-device-light,
 .scape .flat-svg.highlight .group-plane,
 .scape .flat-svg.highlight .group-device-vaporizer,
@@ -495,7 +495,7 @@ scape
 }
 
 
-.scape .flat-svg.highlight.highlight-group-outer-light .group-outer-light,
+.scape .flat-svg.highlight.highlight-group-outdoor-light .group-outdoor-light,
 .scape .flat-svg.highlight.highlight-group-device-light .group-device-light,
 .scape .flat-svg.highlight.highlight-group-plane .group-plane,
 .scape .flat-svg.highlight.highlight-group-device-vaporizer .group-device-vaporizer,
@@ -693,15 +693,15 @@ scape
     opacity: 1;
 }
 
-/* outer-light (day/night) */
+/* outdoor-light (day/night) */
 
 .scape .flat-svg #scape-day,
 .scape .flat-svg #scape-night {
     opacity: 0;
 }
 
-.scape .flat-svg.outer-light-defined #scape-day,
-.scape .flat-svg.outer-light-defined #scape-night {
+.scape .flat-svg.outdoor-light-defined #scape-day,
+.scape .flat-svg.outdoor-light-defined #scape-night {
     opacity: 1;
 }
 

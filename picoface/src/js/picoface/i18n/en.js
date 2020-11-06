@@ -397,7 +397,7 @@ export const i18n = {
                 },
                 tz: {
                     caption: 'time-zone',
-                    comment: 'be careful to sync not only a "good" time, but a "good" timezone also, because inner 24h timers are based on local time. And they may be, simple say, become "shifted" when interperted by other user because of time-zone discrepancy',
+                    comment: 'be careful to sync not only a "good" time, but a "good" timezone also, because indoor 24h timers are based on local time. And they may be, simple say, become "shifted" when interperted by other user because of time-zone discrepancy',
                 },
             },
             save: {
@@ -427,7 +427,7 @@ export const i18n = {
             },
             accessPoint: {
                 caption: 'access point',
-                comment: 'works as wifi-router, creating a new dedicated ssid',
+                comment: 'works as wifi-routdoor, creating a new dedicated ssid',
                 ssid: {
                     caption: 'access point name (ssid)',
                     comment: 'wifi access point name, where this application (picoface) can be dicovered',
@@ -470,12 +470,12 @@ export const i18n = {
                 caption: 'vaporizer relay switch pin',
                 comment: 'harware pin',
             },
-            innerDhtDataPin: {
-                caption: 'inner dht sensor data pin',
+            indoorDhtDataPin: {
+                caption: 'indoor dht sensor data pin',
                 comment: 'harware pin',
             },
-            outerDhtDataPin: {
-                caption: 'outer dht sensor data pin',
+            outdoorDhtDataPin: {
+                caption: 'outdoor dht sensor data pin',
                 comment: 'harware pin',
             },
             save: {
@@ -491,8 +491,8 @@ export const i18n = {
             title: {
                 caption: 'sensor settings',
             },
-            innerEnvironment: {
-                caption: 'inner environment',
+            indoorEnvironment: {
+                caption: 'indoor environment',
                 sensorType: {
                     caption: 'kill me',
                     caption: 'sensor type',
@@ -582,8 +582,8 @@ export const i18n = {
                     }
                 },
             },
-            outerEnvironment: {
-                caption: 'outer environment',
+            outdoorEnvironment: {
+                caption: 'outdoor environment',
                 sensorType: {
                     caption: 'kill me',
                     caption: 'sensor type',

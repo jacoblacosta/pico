@@ -16,7 +16,7 @@ import {
     IndexWidget,
 } from './widget/widget.js';
 
-export class WidgetRouter {
+export class WidgetRoutdoor {
     static widgetConstructorsDictionary = {
         'settings/light': LightSettingsEditorWidget,
         'settings/webInterface': WebInterfaceSettingsEditorWidget,
@@ -52,13 +52,13 @@ export class WidgetRouter {
     buildDom() {
         this.$container = document.createElement('div')
         this.$container.classList.add('app-container');
-        // no widgets at start, need to rebuildInnerDom to dom be ready to use
+        // no widgets at start, need to rebuildIndoorDom to dom be ready to use
         this.$parent.appendChild(this.$container);
         window.addEventListener('hashchange', () => {
             this.navigateByHash();
         }, false);
     }
-    rebuildInnerDom(newRouteKey) {
+    rebuildIndoorDom(newRouteKey) {
         if (this.currentWidget) {
             if (this.currentWidget.destroy) {
                 this.currentWidget.destroy();
@@ -66,14 +66,14 @@ export class WidgetRouter {
                 this.currentWidget.level4_destroy();
             }
         }
-        this.$container.innerHTML = '';
-        const widgetConsructor = WidgetRouter.widgetConstructorsDictionary[newRouteKey];
+        this.$container.indoorHTML = '';
+        const widgetConsructor = WidgetRoutdoor.widgetConstructorsDictionary[newRouteKey];
         this.currentWidget = new widgetConsructor(this.$container);
     }
     navigateByHash() {
         const keyFromHash = location.hash.slice(1);
-        if (WidgetRouter.widgetConstructorsDictionary[keyFromHash]) {
-            this.rebuildInnerDom(keyFromHash);
+        if (WidgetRoutdoor.widgetConstructorsDictionary[keyFromHash]) {
+            this.rebuildIndoorDom(keyFromHash);
             window.scrollTo(0, 0);
             return true;
         } else {

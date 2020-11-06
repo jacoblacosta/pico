@@ -159,14 +159,14 @@ module.exports = {
             typeof value.waterRelaySwitchPin === 'object' && firmware.persistent.plainTreeValidator.gpioPin(value.waterRelaySwitchPin) &&
             typeof value.heaterRelaySwitchPin === 'object' && firmware.persistent.plainTreeValidator.gpioPin(value.heaterRelaySwitchPin) &&
             typeof value.vaporizerRelaySwitchPin === 'object' && firmware.persistent.plainTreeValidator.gpioPin(value.vaporizerRelaySwitchPin) &&
-            typeof value.innerDhtDataPin === 'object' && firmware.persistent.plainTreeValidator.gpioPin(value.innerDhtDataPin) &&
-            typeof value.outerDhtDataPin === 'object' && firmware.persistent.plainTreeValidator.gpioPin(value.outerDhtDataPin)
+            typeof value.indoorDhtDataPin === 'object' && firmware.persistent.plainTreeValidator.gpioPin(value.indoorDhtDataPin) &&
+            typeof value.outdoorDhtDataPin === 'object' && firmware.persistent.plainTreeValidator.gpioPin(value.outdoorDhtDataPin)
         );
     },
     sensorSettings: function(value) {
         return (
-            typeof value.innerEnvironment === 'object' && firmware.persistent.plainTreeValidator.environmentSensorSettigs(value.innerEnvironment) &&
-            typeof value.outerEnvironment === 'object' && firmware.persistent.plainTreeValidator.environmentSensorSettigs(value.outerEnvironment)
+            typeof value.indoorEnvironment === 'object' && firmware.persistent.plainTreeValidator.environmentSensorSettigs(value.indoorEnvironment) &&
+            typeof value.outdoorEnvironment === 'object' && firmware.persistent.plainTreeValidator.environmentSensorSettigs(value.outdoorEnvironment)
         );
     },
     environmentSensorSettigs: function(value) {

@@ -6,7 +6,8 @@ class PicochipEmulator {
     genericCfg = {};
     isShutdowned = false;
     startDateAndTime = new Date();
-    constructor(lightSimulator, fanSimulator, waterSimulator, heaterSimulator, vaporizerSimulator, innerDhtSimulator, outerDhtSimulator, onPicochipEmilatorReset) {
+    constructor(pinboardSimulator) {
+        this.pinboardSimulator = pinboardSimulator;
         const genericCfgFromBackup = PicochipEmulator.persistentStorage.genericCfg;
 
         if (genericCfgFromBackup) {
@@ -25,14 +26,6 @@ class PicochipEmulator {
                 password: 'gigabutt',
             },
         }
-        this.lightSimulator = lightSimulator;
-        this.fanSimulator = fanSimulator;
-        this.waterSimulator = waterSimulator;
-        this.heaterSimulator = heaterSimulator;
-        this.vaporizerSimulator = vaporizerSimulator;
-        this.innerDhtSimulator = innerDhtSimulator;
-        this.outerDhtSimulator = outerDhtSimulator;
-        this.onPicochipEmilatorReset = onPicochipEmilatorReset;
         setTimeout(() => {
             this.startLowLevelEmulation();
         }, 3000);
@@ -85,78 +78,15 @@ class PicochipEmulator {
                 return this.wifiEmulatorState.accessPoint;
             },
         },
-
-        relaySwitch: {
-            light: {
-                init: (gpioPinIdx) => {
-                    return this.lightSimulator.init(gpioPinIdx);;
-                },
-                write: (isRelaySwitchedOn) => {
-                    return this.lightSimulator.write(isRelaySwitchedOn);;
-                },
-            },
-            fan: {
-                init: (gpioPinIdx) => {
-                    return this.fanSimulator.init(gpioPinIdx);
-
-                },
-                write: (isRelaySwitchedOn) => {
-                    return this.fanSimulator.write(isRelaySwitchedOn);
-                },
-            },
-            water: {
-                init: (gpioPinIdx) => {
-                    return this.waterSimulator.init(gpioPinIdx);
-
-                },
-                write: (isRelaySwitchedOn) => {
-                    return this.waterSimulator.write(isRelaySwitchedOn);
-                },
-            },
-            heater: {
-                init: (gpioPinIdx) => {
-                    return this.heaterSimulator.init(gpioPinIdx);
-
-                },
-                write: (isRelaySwitchedOn) => {
-                    return this.heaterSimulator.write(isRelaySwitchedOn);
-                },
-            },
-            vaporizer: {
-                init: (gpioPinIdx) => {
-                    return this.vaporizerSimulator.init(gpioPinIdx);
-
-                },
-                write: (isRelaySwitchedOn) => {
-                    return this.vaporizerSimulator.write(isRelaySwitchedOn);
-                },
+        digital: {
+            init: (gpioPinIdx, isInitialHigh) => {
+                return this.pinboardSimulator.digitalOutputManagerEmulator.hal.init(gpioPinIdx, isInitialHigh);
             },
         },
         sensor: {
-            innerDht: {
+            dht22: {
                 init: (gpioPinIdx) => {
-                    return this.innerDhtSimulator.init(gpioPinIdx);
-                },
-                read: () => {
-                    const temperatureAndHumidity = this.innerDhtSimulator.read();
-                    return {
-                        indoorTemperature: temperatureAndHumidity.temperature,
-                        indoorHumidity: temperatureAndHumidity.humidity,
-                    };
-                },
-            },
-            outerDht: {
-                init: (gpioPinIdx) => {
-                    return this.outerDhtSimulator.init(gpioPinIdx);
-                },
-                read: () => {
-                    const temperatureAndHumidity = this.outerDhtSimulator.read();
-                    if (!temperatureAndHumidity) {
-                    }
-                    return {
-                        outdoorTemperature: temperatureAndHumidity.temperature,
-                        outdoorHumidity: temperatureAndHumidity.humidity,
-                    };
+                    return this.pinboardSimulator.dhtManagerEmulator.hal.init(gpioPinIdx);
                 },
             },
         },
@@ -183,6 +113,9 @@ class PicochipEmulator {
                 clearTimeout(timerId);
             }
         },
+        delay: (microseconds) => {
+            // do nothing
+        },
         sys: {
             getFreeRam() {
                 return 123456;
@@ -204,8 +137,8 @@ class PicochipEmulator {
             this.lightSimulator.shutdown();
             this.fanSimulator.shutdown();
             this.waterSimulator.shutdown();
-            this.innerDhtSimulator.shutdown();
-            this.outerDhtSimulator.shutdown();
+            this.indoorDhtSimulator.shutdown();
+            this.outdoorDhtSimulator.shutdown();
             throw new Error('shutdown happend');
         },
         restart: () => {
@@ -214,10 +147,9 @@ class PicochipEmulator {
             this.lightSimulator.shutdown();
             this.fanSimulator.shutdown();
             this.waterSimulator.shutdown();
-            this.innerDhtSimulator.shutdown();
-            this.outerDhtSimulator.shutdown();
+            this.indoorDhtSimulator.shutdown();
+            this.outdoorDhtSimulator.shutdown();
             PicochipEmulator.persistentStorage.genericCfg = this.genericCfg;
-            this.onPicochipEmilatorReset();
             console.warn('restart happends');
         }
     }

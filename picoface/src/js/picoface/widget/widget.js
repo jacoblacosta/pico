@@ -581,8 +581,8 @@ export class PinSettingsEditorWidget extends AbstractWidget {
         this.managed.waterRelaySwitchPin = new GpioPinWidgetElement(this.$container, this.ladder, this.i18nSubtree.waterRelaySwitchPin);
         this.managed.heaterRelaySwitchPin = new GpioPinWidgetElement(this.$container, this.ladder, this.i18nSubtree.heaterRelaySwitchPin);
         this.managed.vaporizerRelaySwitchPin = new GpioPinWidgetElement(this.$container, this.ladder, this.i18nSubtree.vaporizerRelaySwitchPin);
-        this.managed.innerDhtDataPin = new GpioPinWidgetElement(this.$container, this.ladder, this.i18nSubtree.innerDhtDataPin);
-        this.managed.outerDhtDataPin = new GpioPinWidgetElement(this.$container, this.ladder, this.i18nSubtree.outerDhtDataPin);
+        this.managed.indoorDhtDataPin = new GpioPinWidgetElement(this.$container, this.ladder, this.i18nSubtree.indoorDhtDataPin);
+        this.managed.outdoorDhtDataPin = new GpioPinWidgetElement(this.$container, this.ladder, this.i18nSubtree.outdoorDhtDataPin);
         this.managed.save = new SaveSettingsWidgetSection(this.$container, this.ladder, this.i18nSubtree.save);
         this.managed.footer = new FooterWidgetElement(this.$container, this.ladder, i18n.widgetElement.footer);
         this.managed.save.ee.on('save', () => {this.ee.emit('save'); });
@@ -633,8 +633,8 @@ export class SensorSettingsEditorWidget extends AbstractWidget {
     easy_buildDom() {
         this.$container.classList.add('root-widget-container');
         this.managed.title = new TitleWidgetElement(this.$container, this.ladder, this.i18nSubtree.title);
-        this.managed.innerEnvironment = new EnvironmentSensorWidgetSection(this.$container, this.ladder, this.i18nSubtree.innerEnvironment);
-        this.managed.outerEnvironment = new EnvironmentSensorWidgetSection(this.$container, this.ladder, this.i18nSubtree.outerEnvironment);
+        this.managed.indoorEnvironment = new EnvironmentSensorWidgetSection(this.$container, this.ladder, this.i18nSubtree.indoorEnvironment);
+        this.managed.outdoorEnvironment = new EnvironmentSensorWidgetSection(this.$container, this.ladder, this.i18nSubtree.outdoorEnvironment);
         this.managed.save = new SaveSettingsWidgetSection(this.$container, this.ladder, this.i18nSubtree.save);
         this.managed.footer = new FooterWidgetElement(this.$container, this.ladder, i18n.widgetElement.footer);
         this.managed.save.ee.on('save', () => {this.ee.emit('save'); });

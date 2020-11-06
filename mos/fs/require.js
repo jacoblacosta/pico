@@ -1,4 +1,4 @@
-let module = { exports: {} }; // outer scope variable to catch module.export assigns and emulates node.js behaviour
+let module = { exports: {} }; // outdoor scope variable to catch module.export assigns and emulates node.js behaviour
 function require(path) {
     Sys.wdt_feed();
     gc(true);

@@ -70,7 +70,7 @@
 	.st64{fill:#565C68;stroke:#FFFFFF;stroke-width:4;stroke-miterlimit:10;}
 	.st65{fill:#ED1C24;}
 </style>
-<g class="group-outer-light">
+<g class="group-outdoor-light">
 	<g id="scape-night">
 		<rect y="464" class="st0" width="1536" height="336"/>
 		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="768" y1="-181.25" x2="768" y2="801.5278">
@@ -91,7 +91,7 @@
 		<ellipse class="st2" cx="768" cy="664" rx="640" ry="240"/>
 	</g>
 </g>
-<g class="group-outer-light">
+<g class="group-outdoor-light">
 	<g id="scape-day">
 		<rect y="464" class="st3" width="1536" height="336"/>
 		<rect class="st4" width="1536" height="464"/>

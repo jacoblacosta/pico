@@ -317,12 +317,12 @@ export const i18n = {
                 caption: 'Пин управления увлажнителем',
                 comment: 'harware pin',
             },
-            innerDhtDataPin: {
+            indoorDhtDataPin: {
                 caption: 'Пин внутренего датчика DHT',
                 comment: 'harware pin',
             },
-            outerDhtDataPin: {
-                caption: 'outer dht sensor data pin',
+            outdoorDhtDataPin: {
+                caption: 'outdoor dht sensor data pin',
                 comment: 'harware pin',
             },
             saveButton: {

@@ -1,6 +1,6 @@
 let firmware = {
-    innerDhtGpioPinIdx: 14,
-    outerDhtGpioPinIdx: 15,
+    indoorDhtGpioPinIdx: 14,
+    outdoorDhtGpioPinIdx: 15,
     halTestCfg: undefined,
     clearHalTestCfg: function() {
         this.halTestCfg = {
@@ -123,10 +123,10 @@ let firmware = {
             endCallback();
         },
         function testStage2(firmware, endCallback) {
-            firmware.testSensorInnerDhtInit();
-            firmware.testSensorInnerDhtRead();
-            firmware.testSensorOuterDhtInit();
-            firmware.testSensorOuterDhtRead();
+            firmware.testSensorIndoorDhtInit();
+            firmware.testSensorIndoorDhtRead();
+            firmware.testSensorOutdoorDhtInit();
+            firmware.testSensorOutdoorDhtRead();
             firmware.testTimer(endCallback);
         },
         function testStage3(firmware, endCallback) {
@@ -203,97 +203,51 @@ let firmware = {
             this.logTestError(testLogPrefix, 'no wifi access point config object returned');
         }
     },
-    testSensorInnerDhtInit: function() {
-        let testLogPrefix = 'hal.sensor.innerDht.init';
+    testSensorDhtInit: function() {
+        let testLogPrefix = 'hal.sensor.Dht.init';
 
-        let badInitState = hal.sensor.innerDht.init(99);
+        let badInitState = hal.sensor.dht.init(99);
+
         if (!badInitState) {
-            this.logTestPass(testLogPrefix, 'init innerDht on pin 99 returns false');
+            this.logTestPass(testLogPrefix, 'init Dht on pin 99 returns false');
         } else {
-            this.logTestError(testLogPrefix, 'init innerDht on pin 99 does not return false');
+            this.logTestError(testLogPrefix, 'init Dht on pin 99 does not return false');
         }
 
-        let goodInitState = hal.sensor.innerDht.init(this.innerDhtGpioPinIdx);
+        let goodInitState = hal.sensor.Dht.init(this.dhtGpioPinIdx);
         if (goodInitState) {
-            this.logTestPass(testLogPrefix, 'init innerDht on pin ' + JSON.stringify(this.innerDhtGpioPinIdx) + ' returns true');
+            this.logTestPass(testLogPrefix, 'init Dht on pin ' + JSON.stringify(this.dhtGpioPinIdx) + ' returns sensor onject');
         } else {
-            this.logTestError(testLogPrefix, 'init innerDht on pin ' + JSON.stringify(this.innerDhtGpioPinIdx) + ' does not return true');
+            this.logTestError(testLogPrefix, 'init Dht on pin ' + JSON.stringify(this.dhtGpioPinIdx) + ' does not return sensor onject');
         }
     },
 
-    testSensorInnerDhtRead: function() {
-        let testLogPrefix = 'hal.sensor.innerDht.read';
-        hal.sensor.innerDht.init(this.innerDhtGpioPinIdx);
-        let indoorTemperatureAndHumidity = hal.sensor.innerDht.read();
-        if (indoorTemperatureAndHumidity) {
-            if (indoorTemperatureAndHumidity.indoorTemperature === null || indoorTemperatureAndHumidity.indoorTemperature === undefined) {
-                this.logTestError(testLogPrefix, 'read innerDht does not returns not an object with .indoorTemperature field');
+    testSensorDhtRead: function() {
+        let testLogPrefix = 'hal.sensor.dht22.read';
+        let dht = hal.sensor.dht.init(this.dhtGpioPinIdx);
+        let temperatureAndHumidity = dht.read();
+        if (temperatureAndHumidity) {
+            if (temperatureAndHumidity.temperature === null || temperatureAndHumidity.temperature === undefined) {
+                this.logTestError(testLogPrefix, 'read dht does not returns not an object with .temperature field');
             }
-            if (indoorTemperatureAndHumidity.indoorHumidity === null || indoorTemperatureAndHumidity.indoorHumidity === undefined) {
-                this.logTestError(testLogPrefix, 'read innerDht does not returns not an object with .indoorHumidity field');
-            }
-
-            if (indoorTemperatureAndHumidity.indoorTemperature === 0 || indoorTemperatureAndHumidity.indoorHumidity === 0) {
-                this.logTestError(testLogPrefix, 'read innerDht gets perfect zero value, it is strange');
+            if (temperatureAndHumidity.indoorHumidity === null || temperatureAndHumidity.indoorHumidity === undefined) {
+                this.logTestError(testLogPrefix, 'read dht does not returns not an object with .indoorHumidity field');
             }
 
-            let isIndoorTemperatureOk = (indoorTemperatureAndHumidity.indoorTemperature > -50 && indoorTemperatureAndHumidity.indoorTemperature < 50);
-            let isIndoorHumidityOk = (indoorTemperatureAndHumidity.indoorTemperature > -50 && indoorTemperatureAndHumidity.indoorTemperature < 50);
+            if (temperatureAndHumidity.temperature === 0 || temperatureAndHumidity.indoorHumidity === 0) {
+                this.logTestError(testLogPrefix, 'read dht gets perfect zero value, it is strange');
+            }
 
-            if (isIndoorTemperatureOk && isIndoorHumidityOk) {
-                this.logTestPass(testLogPrefix, 'read innerDht get good {indoorTemperature, indoorHumidity} object and values are looks natural');
+            let istemperatureOk = (temperatureAndHumidity.temperature > -50 && temperatureAndHumidity.temperature < 50);
+            let isIndoorHumidityOk = (temperatureAndHumidity.temperature > -50 && temperatureAndHumidity.temperature < 50);
+
+            if (istemperatureOk && isIndoorHumidityOk) {
+                this.logTestPass(testLogPrefix, 'read dht get good {temperature, indoorHumidity} object and values are looks natural');
             } else {
-                this.logTestError(testLogPrefix, 'read innerDht get {indoorTemperature, indoorHumidity} object and values are NOT looks natural');
+                this.logTestError(testLogPrefix, 'read dht get {temperature, indoorHumidity} object and values are NOT looks natural');
             }
         } else {
-            this.logTestError(testLogPrefix, 'read innerDht returns not an object');
-        }
-    },
-
-    testSensorOuterDhtInit: function() {
-        let testLogPrefix = 'hal.sensor.outerDht.init';
-
-        let badInitState = hal.sensor.outerDht.init(99);
-        if (!badInitState) {
-            this.logTestPass(testLogPrefix, 'init outerDht on pin 99 returns false');
-        } else {
-            this.logTestError(testLogPrefix, 'init outerDht on pin 99 does not return false');
-        }
-
-        let goodInitState = hal.sensor.outerDht.init(this.outerDhtGpioPinIdx);
-        if (goodInitState) {
-            this.logTestPass(testLogPrefix, 'init outerDht on pin ' + JSON.stringify(this.outerDhtGpioPinIdx) + ' returns true');
-        } else {
-            this.logTestError(testLogPrefix, 'init outerDht on pin ' + JSON.stringify(this.outerDhtGpioPinIdx) + ' does not return true');
-        }
-    },
-
-    testSensorOuterDhtRead: function() {
-        let testLogPrefix = 'hal.sensor.outerDht.read';
-        hal.sensor.outerDht.init(this.outerDhtGpioPinIdx);
-        let outdoorTemperatureAndHumidity = hal.sensor.outerDht.read();
-        if (outdoorTemperatureAndHumidity) {
-            if (outdoorTemperatureAndHumidity.outdoorTemperature === null || outdoorTemperatureAndHumidity.outdoorTemperature === undefined) {
-                this.logTestError(testLogPrefix, 'read outerDht does not returns not an object with .outdoorTemperature field');
-            }
-            if (outdoorTemperatureAndHumidity.outdoorHumidity === null || outdoorTemperatureAndHumidity.outdoorHumidity === undefined) {
-                this.logTestError(testLogPrefix, 'read outerDht does not returns not an object with .outdoorHumidity field');
-            }
-
-            if (outdoorTemperatureAndHumidity.outdoorTemperature === 0 || outdoorTemperatureAndHumidity.outdoorHumidity === 0) {
-                this.logTestError(testLogPrefix, 'read outerDht gets perfect zero value, it is strange');
-            }
-
-            let isOutdoorTemperatureOk = (outdoorTemperatureAndHumidity.outdoorTemperature > -50 && outdoorTemperatureAndHumidity.outdoorTemperature < 50);
-            let isOutdoorHumidityOk = (outdoorTemperatureAndHumidity.outdoorTemperature > -50 && outdoorTemperatureAndHumidity.outdoorTemperature < 50);
-
-            if (isOutdoorTemperatureOk && isOutdoorHumidityOk) {
-                this.logTestPass(testLogPrefix, 'read outerDht get good {outdoorTemperature, outdoorHumidity} object and values are looks natural');
-            } else {
-                this.logTestError(testLogPrefix, 'read outerDht get {outdoorTemperature, outdoorHumidity} object and values are NOT looks natural');
-            }
-        } else {
-            this.logTestError(testLogPrefix, 'read outerDht returns not an object');
+            this.logTestError(testLogPrefix, 'read dht returns not an object');
         }
     },
 

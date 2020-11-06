@@ -713,9 +713,9 @@ export class PinSettings extends AbstractAssertable {
         const waterRelaySwitchPin = GpioPin.fromPlainTree(plainTree.waterRelaySwitchPin);
         const heaterRelaySwitchPin = GpioPin.fromPlainTree(plainTree.heaterRelaySwitchPin);
         const vaporizerRelaySwitchPin = GpioPin.fromPlainTree(plainTree.vaporizerRelaySwitchPin);
-        const innerDhtDataPin = GpioPin.fromPlainTree(plainTree.innerDhtDataPin);
-        const outerDhtDataPin = GpioPin.fromPlainTree(plainTree.outerDhtDataPin);
-        return new PinSettings(lightRelaySwitchPin, fanRelaySwitchPin, waterRelaySwitchPin, heaterRelaySwitchPin, vaporizerRelaySwitchPin, innerDhtDataPin, outerDhtDataPin);
+        const indoorDhtDataPin = GpioPin.fromPlainTree(plainTree.indoorDhtDataPin);
+        const outdoorDhtDataPin = GpioPin.fromPlainTree(plainTree.outdoorDhtDataPin);
+        return new PinSettings(lightRelaySwitchPin, fanRelaySwitchPin, waterRelaySwitchPin, heaterRelaySwitchPin, vaporizerRelaySwitchPin, indoorDhtDataPin, outdoorDhtDataPin);
     }
     toPlainTree() {
         // old strict assert: this.assert();
@@ -725,8 +725,8 @@ export class PinSettings extends AbstractAssertable {
             waterRelaySwitchPin: this.waterRelaySwitchPin.toPlainTree(),
             heaterRelaySwitchPin: this.heaterRelaySwitchPin.toPlainTree(),
             vaporizerRelaySwitchPin: this.vaporizerRelaySwitchPin.toPlainTree(),
-            innerDhtDataPin: this.innerDhtDataPin.toPlainTree(),
-            outerDhtDataPin: this.outerDhtDataPin.toPlainTree(),
+            indoorDhtDataPin: this.indoorDhtDataPin.toPlainTree(),
+            outdoorDhtDataPin: this.outdoorDhtDataPin.toPlainTree(),
         }
         return plainTree;
     }
@@ -736,8 +736,8 @@ export class PinSettings extends AbstractAssertable {
         waterRelaySwitchPin = new GpioPin(3),
         heaterRelaySwitchPin = new GpioPin(4),
         vaporizerRelaySwitchPin = new GpioPin(5),
-        innerDhtDataPin = new GpioPin(14),
-        outerDhtDataPin = new GpioPin(15),
+        indoorDhtDataPin = new GpioPin(14),
+        outdoorDhtDataPin = new GpioPin(15),
     ) {
         super();
         this.lightRelaySwitchPin = lightRelaySwitchPin;
@@ -745,8 +745,8 @@ export class PinSettings extends AbstractAssertable {
         this.waterRelaySwitchPin = waterRelaySwitchPin;
         this.heaterRelaySwitchPin = heaterRelaySwitchPin;
         this.vaporizerRelaySwitchPin = vaporizerRelaySwitchPin;
-        this.innerDhtDataPin = innerDhtDataPin;
-        this.outerDhtDataPin = outerDhtDataPin;
+        this.indoorDhtDataPin = indoorDhtDataPin;
+        this.outdoorDhtDataPin = outdoorDhtDataPin;
         // old strict assert: this.assert();
     }
     validate() {
@@ -756,8 +756,8 @@ export class PinSettings extends AbstractAssertable {
             this.waterRelaySwitchPin && this.waterRelaySwitchPin instanceof GpioPin && this.waterRelaySwitchPin.validate() &&
             this.heaterRelaySwitchPin && this.heaterRelaySwitchPin instanceof GpioPin && this.heaterRelaySwitchPin.validate() &&
             this.vaporizerRelaySwitchPin && this.vaporizerRelaySwitchPin instanceof GpioPin && this.vaporizerRelaySwitchPin.validate() &&
-            this.innerDhtDataPin && this.innerDhtDataPin instanceof GpioPin && this.innerDhtDataPin.validate() &&
-            this.outerDhtDataPin && this.outerDhtDataPin instanceof GpioPin && this.outerDhtDataPin.validate()
+            this.indoorDhtDataPin && this.indoorDhtDataPin instanceof GpioPin && this.indoorDhtDataPin.validate() &&
+            this.outdoorDhtDataPin && this.outdoorDhtDataPin instanceof GpioPin && this.outdoorDhtDataPin.validate()
         );
     }
 }
@@ -1181,32 +1181,32 @@ export class EnvironmentSensorSettings extends AbstractAssertable {
 }
 export class SensorSettings extends AbstractAssertable {
     static fromPlainTree(plainTree) {
-        const innerEnvironment = EnvironmentSensorSettings.fromPlainTree(plainTree.innerEnvironment);
-        const outerEnvironment = EnvironmentSensorSettings.fromPlainTree(plainTree.outerEnvironment);
-        return new SensorSettings(innerEnvironment, outerEnvironment);
+        const indoorEnvironment = EnvironmentSensorSettings.fromPlainTree(plainTree.indoorEnvironment);
+        const outdoorEnvironment = EnvironmentSensorSettings.fromPlainTree(plainTree.outdoorEnvironment);
+        return new SensorSettings(indoorEnvironment, outdoorEnvironment);
 
     }
     toPlainTree() {
         // old strict assert: this.assert();
         const plainTree = {
-            innerEnvironment: this.innerEnvironment.toPlainTree(),
-            outerEnvironment: this.outerEnvironment.toPlainTree(),
+            indoorEnvironment: this.indoorEnvironment.toPlainTree(),
+            outdoorEnvironment: this.outdoorEnvironment.toPlainTree(),
         }
         return plainTree;
     }
     constructor(
-        innerEnvironment = new EnvironmentSensorSettings(),
-        outerEnvironment = new EnvironmentSensorSettings(),
+        indoorEnvironment = new EnvironmentSensorSettings(),
+        outdoorEnvironment = new EnvironmentSensorSettings(),
     ) {
         super();
-        this.innerEnvironment = innerEnvironment;
-        this.outerEnvironment = outerEnvironment;
+        this.indoorEnvironment = indoorEnvironment;
+        this.outdoorEnvironment = outdoorEnvironment;
         // old strict assert: this.assert();
     }
     validate() {
         return (
-            this.innerEnvironment && this.innerEnvironment instanceof EnvironmentSensorSettings && this.innerEnvironment.validate() &&
-            this.outerEnvironment && this.outerEnvironment instanceof EnvironmentSensorSettings && this.outerEnvironment.validate()
+            this.indoorEnvironment && this.indoorEnvironment instanceof EnvironmentSensorSettings && this.indoorEnvironment.validate() &&
+            this.outdoorEnvironment && this.outdoorEnvironment instanceof EnvironmentSensorSettings && this.outdoorEnvironment.validate()
         );
     }
 }
