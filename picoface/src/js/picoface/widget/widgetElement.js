@@ -457,7 +457,7 @@ export class SmartOutputPinWidgetElement extends AbstractWidget {
                 this.unmanaged.$idxSelect.appendChild($option);
             }
         } else if (this.binded.rest.modeKey === 'extended') {
-            const pinsCount = this.binded.state.shared.extenderCapacity * 8;
+            const pinsCount = this.binded.state.shared.extenderCapacity;
             for (let extendedOutputPinIdx = 0; extendedOutputPinIdx < pinsCount; extendedOutputPinIdx++) {
                 const $option = document.createElement('option')
                 $option.classList.add('widget-element-select-option');

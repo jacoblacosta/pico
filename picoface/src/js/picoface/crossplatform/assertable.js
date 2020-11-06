@@ -1342,7 +1342,7 @@ export class PeripheralExtenderSettings extends AbstractAssertable {
             this.dataAPin && this.dataAPin instanceof GpioPin && this.dataAPin.validate() &&
             this.dataBPin && this.dataBPin instanceof GpioPin && this.dataBPin.validate() &&
             this.dataCPin && this.dataCPin instanceof GpioPin && this.dataCPin.validate() &&
-            typeof this.capacity === 'number' && this.capacity > 0 && this.capacity <= 4
+            typeof this.capacity === 'number' && this.capacity > 0 && this.capacity <= 64
         );
     }
 }

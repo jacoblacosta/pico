@@ -259,19 +259,19 @@ module.exports = {
             input: {
                 extender: {
                     isEnabled: false,
-                    dataAPin: {idx: 14},
-                    dataBPin: {idx: 15},
-                    dataCPin: {idx: 16},
-                    capacity: 1
+                    dataAPin: {idx: 10},
+                    dataBPin: {idx: 11},
+                    dataCPin: {idx: 12},
+                    capacity: 16
                 },
             },
             output: {
                 extender: {
                     isEnabled: false,
-                    dataAPin: {idx: 14},
-                    dataBPin: {idx: 15},
-                    dataCPin: {idx: 16},
-                    capacity: 1
+                    dataAPin: {idx: 13},
+                    dataBPin: {idx: 14},
+                    dataCPin: {idx: 15},
+                    capacity: 16
                 },
                 relay: {
                     light: {
