@@ -57,9 +57,9 @@ export class Timespan24 extends AbstractAssertable {
     }
 }
 
-export class GpioPin extends AbstractAssertable {
+export class HardwarePin extends AbstractAssertable {
     static fromPlainTree(plainTree) {
-        return new GpioPin(plainTree.idx);
+        return new HardwarePin(plainTree.idx);
     }
     toPlainTree() {
         // old strict assert: this.assert();
@@ -823,81 +823,81 @@ export class EnvironmentSensorDsStaticOverrideSettings extends AbstractAssertabl
 
 export class EnvironmentSensorDhtConnectionSettings extends AbstractAssertable {
     static fromPlainTree(plainTree) {
-        const dataPin = GpioPin.fromPlainTree(plainTree.dataPin);
-        return new EnvironmentSensorDhtConnectionSettings(dataPin);
+        const dataHardwarePin = HardwarePin.fromPlainTree(plainTree.dataHardwarePin);
+        return new EnvironmentSensorDhtConnectionSettings(dataHardwarePin);
     }
     toPlainTree() {
         // old strict assert: this.assert();
         const plainTree = {
-            dataPin: this.dataPin.toPlainTree(),
+            dataHardwarePin: this.dataHardwarePin.toPlainTree(),
         }
         return plainTree;
     }
     constructor(
-        dataPin = new GpioPin(14),
+        dataHardwarePin = new HardwarePin(14),
     ) {
         super();
-        this.dataPin = dataPin;
+        this.dataHardwarePin = dataHardwarePin;
         // old strict assert: this.assert();
     }
     validate() {
         return (
-            this.dataPin && this.dataPin instanceof GpioPin && this.dataPin.validate()
+            this.dataHardwarePin && this.dataHardwarePin instanceof HardwarePin && this.dataHardwarePin.validate()
         );
     }
 }
 export class EnvironmentSensorBmConnectionSettings extends AbstractAssertable {
     static fromPlainTree(plainTree) {
-        const dataAPin = GpioPin.fromPlainTree(plainTree.dataAPin);
-        const dataBPin = GpioPin.fromPlainTree(plainTree.dataBPin);
-        return new EnvironmentSensorBmConnectionSettings(dataAPin, dataBPin);
+        const dataAHardwarePin = HardwarePin.fromPlainTree(plainTree.dataAHardwarePin);
+        const dataBHardwarePin = HardwarePin.fromPlainTree(plainTree.dataBHardwarePin);
+        return new EnvironmentSensorBmConnectionSettings(dataAHardwarePin, dataBHardwarePin);
     }
     toPlainTree() {
         // old strict assert: this.assert();
         const plainTree = {
-            dataAPin: this.dataAPin.toPlainTree(),
-            dataBPin: this.dataBPin.toPlainTree(),
+            dataAHardwarePin: this.dataAHardwarePin.toPlainTree(),
+            dataBHardwarePin: this.dataBHardwarePin.toPlainTree(),
         }
         return plainTree;
     }
     constructor(
-        dataAPin = new GpioPin(14),
-        dataBPin = new GpioPin(15),
+        dataAHardwarePin = new HardwarePin(14),
+        dataBHardwarePin = new HardwarePin(15),
     ) {
         super();
-        this.dataAPin = dataAPin;
-        this.dataBPin = dataBPin;
+        this.dataAHardwarePin = dataAHardwarePin;
+        this.dataBHardwarePin = dataBHardwarePin;
         // old strict assert: this.assert();
     }
     validate() {
         return (
-            this.dataAPin && this.dataAPin instanceof GpioPin && this.dataAPin.validate() &&
-            this.dataBPin && this.dataBPin instanceof GpioPin && this.dataBPin.validate()
+            this.dataAHardwarePin && this.dataAHardwarePin instanceof HardwarePin && this.dataAHardwarePin.validate() &&
+            this.dataBHardwarePin && this.dataBHardwarePin instanceof HardwarePin && this.dataBHardwarePin.validate()
         );
     }
 }
 export class EnvironmentSensorDsConnectionSettings extends AbstractAssertable {
     static fromPlainTree(plainTree) {
-        const dataPin = GpioPin.fromPlainTree(plainTree.dataPin);
-        return new EnvironmentSensorDsConnectionSettings(dataPin);
+        const dataHardwarePin = HardwarePin.fromPlainTree(plainTree.dataHardwarePin);
+        return new EnvironmentSensorDsConnectionSettings(dataHardwarePin);
     }
     toPlainTree() {
         // old strict assert: this.assert();
         const plainTree = {
-            dataPin: this.dataPin.toPlainTree(),
+            dataHardwarePin: this.dataHardwarePin.toPlainTree(),
         }
         return plainTree;
     }
     constructor(
-        dataPin = new GpioPin(14),
+        dataHardwarePin = new HardwarePin(14),
     ) {
         super();
-        this.dataPin = dataPin;
+        this.dataHardwarePin = dataHardwarePin;
         // old strict assert: this.assert();
     }
     validate() {
         return (
-            this.dataPin && this.dataPin instanceof GpioPin && this.dataPin.validate()
+            this.dataHardwarePin && this.dataHardwarePin instanceof HardwarePin && this.dataHardwarePin.validate()
         );
     }
 }
@@ -1248,45 +1248,45 @@ export class OutputPeripheralSettings extends AbstractAssertable {
 export class PeripheralExtenderSettings extends AbstractAssertable {
     static fromPlainTree(plainTree) {
         const isEnabled = plainTree.isEnabled;
-        const dataAPin = GpioPin.fromPlainTree(plainTree.dataAPin);
-        const dataBPin = GpioPin.fromPlainTree(plainTree.dataBPin);
-        const dataCPin = GpioPin.fromPlainTree(plainTree.dataCPin);
+        const dataAHardwarePin = HardwarePin.fromPlainTree(plainTree.dataAHardwarePin);
+        const dataBHardwarePin = HardwarePin.fromPlainTree(plainTree.dataBHardwarePin);
+        const dataCHardwarePin = HardwarePin.fromPlainTree(plainTree.dataCHardwarePin);
         const capacity = plainTree.capacity;
-        return new PeripheralExtenderSettings(isEnabled, dataAPin, dataBPin, dataCPin, capacity);
+        return new PeripheralExtenderSettings(isEnabled, dataAHardwarePin, dataBHardwarePin, dataCHardwarePin, capacity);
 
     }
     toPlainTree() {
         // old strict assert: this.assert();
         const plainTree = {
             isEnabled: this.isEnabled,
-            dataAPin: this.dataAPin.toPlainTree(),
-            dataBPin: this.dataBPin.toPlainTree(),
-            dataCPin: this.dataCPin.toPlainTree(),
+            dataAHardwarePin: this.dataAHardwarePin.toPlainTree(),
+            dataBHardwarePin: this.dataBHardwarePin.toPlainTree(),
+            dataCHardwarePin: this.dataCHardwarePin.toPlainTree(),
             capacity: this.capacity,
         }
         return plainTree;
     }
     constructor(
         isEnabled = false,
-        dataAPin = new GpioPin(14),
-        dataBPin = new GpioPin(15),
-        dataCPin = new GpioPin(16),
+        dataAHardwarePin = new HardwarePin(14),
+        dataBHardwarePin = new HardwarePin(15),
+        dataCHardwarePin = new HardwarePin(16),
         capacity = 1,
     ) {
         super();
         this.isEnabled = isEnabled;
-        this.dataAPin = dataAPin;
-        this.dataBPin = dataBPin;
-        this.dataCPin = dataCPin;
+        this.dataAHardwarePin = dataAHardwarePin;
+        this.dataBHardwarePin = dataBHardwarePin;
+        this.dataCHardwarePin = dataCHardwarePin;
         this.capacity = capacity;
         // old strict assert: this.assert();
     }
     validate() {
         return (
             typeof this.isEnabled === 'boolean' &&
-            this.dataAPin && this.dataAPin instanceof GpioPin && this.dataAPin.validate() &&
-            this.dataBPin && this.dataBPin instanceof GpioPin && this.dataBPin.validate() &&
-            this.dataCPin && this.dataCPin instanceof GpioPin && this.dataCPin.validate() &&
+            this.dataAHardwarePin && this.dataAHardwarePin instanceof HardwarePin && this.dataAHardwarePin.validate() &&
+            this.dataBHardwarePin && this.dataBHardwarePin instanceof HardwarePin && this.dataBHardwarePin.validate() &&
+            this.dataCHardwarePin && this.dataCHardwarePin instanceof HardwarePin && this.dataCHardwarePin.validate() &&
             typeof this.capacity === 'number' && this.capacity > 0 && this.capacity <= 64
         );
     }
@@ -1342,31 +1342,31 @@ export class OutputPeripheralRelaySettings extends AbstractAssertable {
 export class OutputPeripheralRelayChannelSettings extends AbstractAssertable {
     static fromPlainTree(plainTree) {
         const isEnabled = plainTree.isEnabled;
-        const dataPin = SmartOutputPin.fromPlainTree(plainTree.dataPin);
-        return new OutputPeripheralRelayChannelSettings(isEnabled, dataPin);
+        const dataSmartOutputPin = SmartOutputPin.fromPlainTree(plainTree.dataSmartOutputPin);
+        return new OutputPeripheralRelayChannelSettings(isEnabled, dataSmartOutputPin);
 
     }
     toPlainTree() {
         // old strict assert: this.assert();
         const plainTree = {
             isEnabled: this.isEnabled,
-            dataPin: this.dataPin.toPlainTree(),
+            dataSmartOutputPin: this.dataSmartOutputPin.toPlainTree(),
         }
         return plainTree;
     }
     constructor(
         isEnabled = false,
-        dataPin = new SmartOutputPin('raw', 14),
+        dataSmartOutputPin = new SmartOutputPin('raw', 14),
     ) {
         super();
         this.isEnabled = isEnabled;
-        this.dataPin = dataPin;
+        this.dataSmartOutputPin = dataSmartOutputPin;
         // old strict assert: this.assert();
     }
     validate() {
         return (
             typeof this.isEnabled === 'boolean' &&
-            this.dataPin && this.dataPin instanceof SmartOutputPin && this.dataPin.validate()
+            this.dataSmartOutputPin && this.dataSmartOutputPin instanceof SmartOutputPin && this.dataSmartOutputPin.validate()
         );
     }
 }

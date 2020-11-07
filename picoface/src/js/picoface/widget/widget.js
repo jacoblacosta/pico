@@ -2,7 +2,7 @@
 import { AbstractWidget } from './abstractWidget.js';
 import { i18n } from '../i18n/current.js';
 import { Ladder } from '../ladder.js';
-import { BooleanWidgetElement, FooterWidgetElement, GpioPinWidgetElement, IndexTitleWidgetElement, IntegerRangeWidgetElement, ManualOverrideElement, ScapeWidgetElement, TitleWidgetElement } from './widgetElement.js';
+import { BooleanWidgetElement, FooterWidgetElement, HardwarePinWidgetElement, IndexTitleWidgetElement, IntegerRangeWidgetElement, ManualOverrideElement, ScapeWidgetElement, TitleWidgetElement } from './widgetElement.js';
 import { CyclicTimerWidgetSection, DutyModulationWidgetSection, EnvironmentReadingsWidgetSection, HumidityThrersholdWidgetSection, IndexAutomationWidgetSection, IndexOtherWidgetSection, IndexStatsWidgetSection, PeriodicDutyWidgetSection, RelayStateWidgetSection, SaveSettingsWidgetSection, SwitchCooldownWidgetSection, TemperatureThrersholdWidgetSection, TimeTelemetryWidgetSection, CurrentTimeWidgetSection, EnvironmentSensorWidgetSection, InputPeripheralWidgetSection, OutputPeripheralWidgetSection } from './widgetSection.js';
 
 

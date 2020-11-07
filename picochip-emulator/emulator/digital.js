@@ -4,11 +4,11 @@ class DigitalOutputManagerEmulator {
     }
     outputEmulators = [];
     hal = {
-        init: (pinIdx, isInitialHigh) => {
-            const digitalDeviceSimulatorPinProxy = this.digitalDeviceSimulatorPinProxies[pinIdx];
+        init: (hardwarePinIdx, isInitialHigh) => {
+            const digitalDeviceSimulatorPinProxy = this.digitalDeviceSimulatorPinProxies[hardwarePinIdx];
             if (digitalDeviceSimulatorPinProxy) {
                 const outputEmulator = new DigitalOutputEmulator(digitalDeviceSimulatorPinProxy, isInitialHigh);
-                this.outputEmulators[pinIdx] = outputEmulator;
+                this.outputEmulators[hardwarePinIdx] = outputEmulator;
                 return outputEmulator.hal;
             } else {
                 return false;

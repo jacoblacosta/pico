@@ -1,4 +1,3 @@
-console.log('yo');
 import { i18n } from '../i18n/current.js';
 import { Ladder } from '../ladder.js';
 import { Splash } from '../splash.js';

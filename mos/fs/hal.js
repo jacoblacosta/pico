@@ -11,14 +11,14 @@ hal.cfg.set = function (value, isSaveToFlash) {
 };
 
 hal.digital = {};
-hal.digital.init = function (pin, isInitialHigh) {
-    let setupResult = GPIO.setup_output(pin, isInitialHigh);
+hal.digital.init = function (hardwarePinIdx, isInitialHigh) {
+    let setupResult = GPIO.setup_output(hardwarePinIdx, isInitialHigh);
     if (setupResult) {
         let digital = {
-            pin: pin,
+            hardwarePinIdx: hardwarePinIdx,
             write: function (isHigh) {
                 let value = isHigh ? 1 : 0;
-                GPIO.write(this.pin, value);
+                GPIO.write(this.hardwarePinIdx, value);
                 return true;
             }
         }
@@ -30,8 +30,8 @@ hal.digital.init = function (pin, isInitialHigh) {
 
 hal.sensor = {};
 hal.sensor.dht22 = {};
-hal.sensor.dht22.init = function (pin) {
-    let dht = DHT.create(pin, DHT.DHT22);
+hal.sensor.dht22.init = function (hardwarePinIdx) {
+    let dht = DHT.create(hardwarePinIdx, DHT.DHT22);
     if (dht) {
     let sensor = {
             dht: dht,

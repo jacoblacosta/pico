@@ -473,9 +473,9 @@ export const i18n = {
                 dht: {
                     caption: 'dht22',
                     connection: {
-                        dataPin: {
+                        dataHardwarePin: {
                             caption: 'dht sensor data pin',
-                            comment: 'harware pin',
+                            comment: 'hardware pin',
                         },
                     },
                     staticOverride: {
@@ -488,26 +488,26 @@ export const i18n = {
                 bme: {
                     caption: 'bme280',
                     connection: {
-                        dataAPin: {
+                        dataAHardwarePin: {
                             caption: 'bme sensor dataA pin',
-                            comment: 'harware pin',
+                            comment: 'hardware pin',
                         },
-                        dataBPin: {
+                        dataBHardwarePin: {
                             caption: 'bme sensor dataB pin',
-                            comment: 'harware pin',
+                            comment: 'hardware pin',
                         },
                     },
                 },
                 bmp: {
                     caption: 'bmp280',
                     connection: {
-                        dataAPin: {
+                        dataAHardwarePin: {
                             caption: 'bmp sensor dataA pin',
-                            comment: 'harware pin',
+                            comment: 'hardware pin',
                         },
-                        dataBPin: {
+                        dataBHardwarePin: {
                             caption: 'bmp sensor dataB pin',
-                            comment: 'harware pin',
+                            comment: 'hardware pin',
                         },
                     },
                     staticOverride: {
@@ -520,9 +520,9 @@ export const i18n = {
                 ds: {
                     caption: 'ds18b20',
                     connection: {
-                        dataPin: {
+                        dataHardwarePin: {
                             caption: 'onwire data pin',
-                            comment: 'harware pin',
+                            comment: 'hardware pin',
                         },
                     },
                     staticOverride: {
@@ -564,9 +564,9 @@ export const i18n = {
                 dht: {
                     caption: 'dht22',
                     connection: {
-                        dataPin: {
+                        dataHardwarePin: {
                             caption: 'dht sensor data pin',
-                            comment: 'harware pin',
+                            comment: 'hardware pin',
                         },
                     },
                     staticOverride: {
@@ -579,26 +579,26 @@ export const i18n = {
                 bme: {
                     caption: 'bme280',
                     connection: {
-                        dataAPin: {
+                        dataAHardwarePin: {
                             caption: 'bme sensor dataA pin',
-                            comment: 'harware pin',
+                            comment: 'hardware pin',
                         },
-                        dataBPin: {
+                        dataBHardwarePin: {
                             caption: 'bme sensor dataB pin',
-                            comment: 'harware pin',
+                            comment: 'hardware pin',
                         },
                     },
                 },
                 bmp: {
                     caption: 'bmp280',
                     connection: {
-                        dataAPin: {
+                        dataAHardwarePin: {
                             caption: 'bmp sensor dataA pin',
-                            comment: 'harware pin',
+                            comment: 'hardware pin',
                         },
-                        dataBPin: {
+                        dataBHardwarePin: {
                             caption: 'bmp sensor dataB pin',
-                            comment: 'harware pin',
+                            comment: 'hardware pin',
                         },
                     },
                     staticOverride: {
@@ -611,9 +611,9 @@ export const i18n = {
                 ds: {
                     caption: 'ds18b20',
                     connection: {
-                        dataPin: {
+                        dataHardwarePin: {
                             caption: 'onwire data pin',
-                            comment: 'harware pin',
+                            comment: 'hardware pin',
                         },
                     },
                     staticOverride: {
@@ -648,13 +648,13 @@ export const i18n = {
                     isEnabled: {
                         caption: 'is input extender enabled'
                     },
-                    dataAPin: {
+                    dataAHardwarePin: {
                         caption: 'data a pin',
                     },
-                    dataBPin: {
+                    dataBHardwarePin: {
                         caption: 'data b pin',
                     },
-                    dataCPin: {
+                    dataCHardwarePin: {
                         caption: 'data c pin',
                     },
                     capacity: {
@@ -669,13 +669,13 @@ export const i18n = {
                     isEnabled: {
                         caption: 'is output extender enabled'
                     },
-                    dataAPin: {
+                    dataAHardwarePin: {
                         caption: 'data a pin',
                     },
-                    dataBPin: {
+                    dataBHardwarePin: {
                         caption: 'data b pin',
                     },
-                    dataCPin: {
+                    dataCHardwarePin: {
                         caption: 'data c pin',
                     },
                     capacity: {
@@ -689,7 +689,7 @@ export const i18n = {
                         isEnabled: {
                             caption: 'is light relay enabled'
                         },
-                        dataPin: {
+                        dataHardwarePin: {
                             caption: 'light pin'
                         },
                     },
@@ -699,7 +699,7 @@ export const i18n = {
                         isEnabled: {
                             caption: 'is fan relay enabled'
                         },
-                        dataPin: {
+                        dataHardwarePin: {
                             caption: 'fan pin'
                         },
                     },
@@ -709,7 +709,7 @@ export const i18n = {
                         isEnabled: {
                             caption: 'is water relay enabled'
                         },
-                        dataPin: {
+                        dataHardwarePin: {
                             caption: 'water pin'
                         },
                     },
@@ -719,7 +719,7 @@ export const i18n = {
                         isEnabled: {
                             caption: 'is heater relay enabled'
                         },
-                        dataPin: {
+                        dataHardwarePin: {
                             caption: 'heater pin'
                         },
                     },
@@ -729,7 +729,7 @@ export const i18n = {
                         isEnabled: {
                             caption: 'is vaporizer relay enabled'
                         },
-                        dataPin: {
+                        dataHardwarePin: {
                             caption: 'vaporizer pin'
                         },
                     },

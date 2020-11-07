@@ -2,7 +2,7 @@
 import { AbstractWidget } from './abstractWidget.js';
 import { i18n } from '../i18n/current.js';
 import { Collapser } from '../collapser.js';
-import { BooleanViewerElement, BooleanWidgetElement, DateViewerElement, EnvironmentSensorSensorTypeWidgetElement, GpioPinWidgetElement, IntegerRangeWidgetElement, LinkWidgetElement, NumberViewerElement, RatioRangeWidgetElement, SaveSettingsButtonWidgetElement, SectionHrWidgetElement, SectionTitleWidgetElement, SectionTitleWithCheckboxWidgetElement, SmartOutputPinWidgetElement, TextViewerElement, Timespan24WidgetMultiElement, TzViewerElement } from './widgetElement.js';
+import { BooleanViewerElement, BooleanWidgetElement, DateViewerElement, EnvironmentSensorSensorTypeWidgetElement, HardwarePinWidgetElement, IntegerRangeWidgetElement, LinkWidgetElement, NumberViewerElement, RatioRangeWidgetElement, SaveSettingsButtonWidgetElement, SectionHrWidgetElement, SectionTitleWidgetElement, SectionTitleWithCheckboxWidgetElement, SmartOutputPinWidgetElement, TextViewerElement, Timespan24WidgetMultiElement, TzViewerElement } from './widgetElement.js';
 
 
 export class CyclicTimerWidgetSection extends AbstractWidget {
@@ -1242,7 +1242,7 @@ export class EnvironmentSensorDhtConnectionWidgetSection extends AbstractWidget 
     }
     easy_buildDom() {
         this.$container.classList.add('widget-section-container');
-        this.managed.dataPin = new GpioPinWidgetElement(this.$container, this.ladder, this.i18nSubtree.dataPin);
+        this.managed.dataHardwarePin = new HardwarePinWidgetElement(this.$container, this.ladder, this.i18nSubtree.dataHardwarePin);
         //this.collapser = new Collapser();
         //this.$collapser = this.collapser.createElementContainer(this.$container);
     }
@@ -1289,8 +1289,8 @@ export class EnvironmentSensorBmConnectionWidgetSection extends AbstractWidget {
     }
     easy_buildDom() {
         this.$container.classList.add('widget-section-container');
-        this.managed.dataAPin = new GpioPinWidgetElement(this.$container, this.ladder, this.i18nSubtree.dataAPin);
-        this.managed.dataBPin = new GpioPinWidgetElement(this.$container, this.ladder, this.i18nSubtree.dataBPin);
+        this.managed.dataAHardwarePin = new HardwarePinWidgetElement(this.$container, this.ladder, this.i18nSubtree.dataAHardwarePin);
+        this.managed.dataBHardwarePin = new HardwarePinWidgetElement(this.$container, this.ladder, this.i18nSubtree.dataBHardwarePin);
         //this.collapser = new Collapser();
         //this.$collapser = this.collapser.createElementContainer(this.$container);
     }
@@ -1337,7 +1337,7 @@ export class EnvironmentSensorDsConnectionWidgetSection extends AbstractWidget {
     }
     easy_buildDom() {
         this.$container.classList.add('widget-section-container');
-        this.managed.dataPin = new GpioPinWidgetElement(this.$container, this.ladder, this.i18nSubtree.dataPin);
+        this.managed.dataHardwarePin = new HardwarePinWidgetElement(this.$container, this.ladder, this.i18nSubtree.dataHardwarePin);
         //this.collapser = new Collapser();
         //this.$collapser = this.collapser.createElementContainer(this.$container);
     }
@@ -1488,9 +1488,9 @@ export class PeripheralExtenderWidgetSection extends AbstractWidget {
         this.managed.isEnabled = new SectionTitleWithCheckboxWidgetElement(this.$container, this.ladder, this.i18nSubtree);
         this.collapser = new Collapser();
         this.$collapser = this.collapser.createElementContainer(this.$container);
-        this.managed.dataAPin = new GpioPinWidgetElement(this.$collapser, this.ladder, this.i18nSubtree.dataAPin);
-        this.managed.dataBPin = new GpioPinWidgetElement(this.$collapser, this.ladder, this.i18nSubtree.dataBPin);
-        this.managed.dataCPin = new GpioPinWidgetElement(this.$collapser, this.ladder, this.i18nSubtree.dataCPin);
+        this.managed.dataAHardwarePin = new HardwarePinWidgetElement(this.$collapser, this.ladder, this.i18nSubtree.dataAHardwarePin);
+        this.managed.dataBHardwarePin = new HardwarePinWidgetElement(this.$collapser, this.ladder, this.i18nSubtree.dataBHardwarePin);
+        this.managed.dataCHardwarePin = new HardwarePinWidgetElement(this.$collapser, this.ladder, this.i18nSubtree.dataCHardwarePin);
         this.managed.capacity = new IntegerRangeWidgetElement(this.$collapser, this.ladder, this.i18nSubtree.capacity, {min: 1, max: 4});
         //this.collapser = new Collapser();
         //this.$collapser = this.collapser.createElementContainer(this.$container);
@@ -1599,7 +1599,7 @@ export class OutputPeripheralRelayChannelWidgetSection extends AbstractWidget {
         this.managed.isEnabled = new SectionTitleWithCheckboxWidgetElement(this.$container, this.ladder, this.i18nSubtree);
         this.collapser = new Collapser();
         this.$collapser = this.collapser.createElementContainer(this.$container);
-        this.managed.dataPin = new SmartOutputPinWidgetElement(this.$collapser, this.ladder, this.i18nSubtree.dataPin);
+        this.managed.dataSmartOutputPin = new SmartOutputPinWidgetElement(this.$collapser, this.ladder, this.i18nSubtree.dataHardwarePin);
     }
     easy_destroy() {
         // do nothimg

@@ -1,6 +1,6 @@
 module.exports = {
     start() {
-        //let pinSettings = firmware.persistent.datum.settings.pin;
+        //let pertipheralSettings = firmware.persistent.datum.settings.pertipheral;
         firmware.relaySwitch.light = firmware.relaySwitchManager.init(1, false);
         firmware.relaySwitch.fan = firmware.relaySwitchManager.init(2, false);
         firmware.relaySwitch.water = firmware.relaySwitchManager.init(3, false);

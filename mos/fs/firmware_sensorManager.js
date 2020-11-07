@@ -1,7 +1,7 @@
 module.exports = {
     dht22: {
-        init: function(pinIdx) {
-            let dht22 = hal.sensor.dht22.init(pinIdx);
+        init: function(hardwarePinIdx) {
+            let dht22 = hal.sensor.dht22.init(hardwarePinIdx);
             return dht22;
         }
     }

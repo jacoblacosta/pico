@@ -1,6 +1,6 @@
 module.exports = {
-    init: function(pinIdx, isInitialHigh) {
-        let relaySwitch = hal.digital.init(pinIdx, isInitialHigh);
+    init: function(hardwarePinIdx, isInitialHigh) {
+        let relaySwitch = hal.digital.init(hardwarePinIdx, isInitialHigh);
         return relaySwitch;
     }
 };

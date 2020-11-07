@@ -79,14 +79,14 @@ class PicochipEmulator {
             },
         },
         digital: {
-            init: (gpioPinIdx, isInitialHigh) => {
-                return this.pinboardSimulator.digitalOutputManagerEmulator.hal.init(gpioPinIdx, isInitialHigh);
+            init: (hardwarePinIdx, isInitialHigh) => {
+                return this.pinboardSimulator.digitalOutputManagerEmulator.hal.init(hardwarePinIdx, isInitialHigh);
             },
         },
         sensor: {
             dht22: {
-                init: (gpioPinIdx) => {
-                    return this.pinboardSimulator.dhtManagerEmulator.hal.init(gpioPinIdx);
+                init: (hardwarePinIdx) => {
+                    return this.pinboardSimulator.dhtManagerEmulator.hal.init(hardwarePinIdx);
                 },
             },
         },
@@ -134,21 +134,11 @@ class PicochipEmulator {
         shutdown: () => {
             this.isShutdowned = true;
             this.expressAsRpcOverHttpAndStaticHttpServerEmulator.shutdown();
-            this.lightSimulator.shutdown();
-            this.fanSimulator.shutdown();
-            this.waterSimulator.shutdown();
-            this.indoorDhtSimulator.shutdown();
-            this.outdoorDhtSimulator.shutdown();
             throw new Error('shutdown happend');
         },
         restart: () => {
             this.isShutdowned = true;
             this.expressAsRpcOverHttpAndStaticHttpServerEmulator.shutdown();
-            this.lightSimulator.shutdown();
-            this.fanSimulator.shutdown();
-            this.waterSimulator.shutdown();
-            this.indoorDhtSimulator.shutdown();
-            this.outdoorDhtSimulator.shutdown();
             PicochipEmulator.persistentStorage.genericCfg = this.genericCfg;
             console.warn('restart happends');
         }

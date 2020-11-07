@@ -1,5 +1,5 @@
 module.exports = {
-    init: function(capacity, dataPinIdx, shiftClockPinIdx, latchClockPinIdx) {
+    init: function(capacity, dataHardwarePinIdx, shiftClockHardwarePinIdx, latchClockHardwarePinIdx) {
         let registers = [];
         for (let i = 0; i < capacity; i++) {
             registers[i] = false;
@@ -7,39 +7,39 @@ module.exports = {
         let extender = {
             registers: registers,
             capacity: capacity,
-            dataPin: hal.digital.init(dataPinIdx),
-            shiftClockPin: hal.digital.init(shiftClockPinIdx),
-            latchClockPin: hal.digital.init(latchClockPinIdx),
-            init: function(pinIdx, isInitialHigh) {
-                extender.write(pinIdx, isInitialHigh);
+            dataHardwarePin: hal.digital.init(dataHardwarePinIdx),
+            shiftClockHardwarePin: hal.digital.init(shiftClockHardwarePinIdx),
+            latchClockHardwarePin: hal.digital.init(latchClockHardwarePinIdx),
+            init: function(extendedPinIdx, isInitialHigh) {
+                extender.write(extendedPinIdx, isInitialHigh);
                 let relaySwitch = {
                     write: function(isHigh) {
-                        extender.write(pinIdx, isHigh);
+                        extender.write(extendedPinIdx, isHigh);
                     }
                 }
                 return relaySwitch;
             },
-            write: function(pinIdx, isHigh) {
-                extender.registers[pinIdx] = isHigh;
+            write: function(extendedPinIdx, isHigh) {
+                extender.registers[extendedPinIdx] = isHigh;
                 this.dump();
             },
             dump: function() {
-                extender.shiftClockPin.write(false);
-                extender.latchClockPin.write(false);
+                extender.shiftClockHardwarePin.write(false);
+                extender.latchClockHardwarePin.write(false);
                 hal.delay(100);
                 for (let i = extender.capacity - 1; i >= 0; i--) {
                     let register = extender.registers[i];
-                    extender.dataPin.write(register);
+                    extender.dataHardwarePin.write(register);
                     hal.delay(100);
-                    extender.shiftClockPin.write(true);
+                    extender.shiftClockHardwarePin.write(true);
                     hal.delay(100);
-                    extender.shiftClockPin.write(false);
+                    extender.shiftClockHardwarePin.write(false);
                     hal.delay(100);
                 }
-                extender.latchClockPin.write(true);
+                extender.latchClockHardwarePin.write(true);
                 hal.delay(100);
-                extender.shiftClockPin.write(false);
-                extender.latchClockPin.write(false);
+                extender.shiftClockHardwarePin.write(false);
+                extender.latchClockHardwarePin.write(false);
                 hal.delay(100);
             }
         }

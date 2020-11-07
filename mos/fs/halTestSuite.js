@@ -1,6 +1,4 @@
 let firmware = {
-    indoorDhtGpioPinIdx: 14,
-    outdoorDhtGpioPinIdx: 15,
     halTestCfg: undefined,
     clearHalTestCfg: function() {
         this.halTestCfg = {
@@ -214,17 +212,17 @@ let firmware = {
             this.logTestError(testLogPrefix, 'init Dht on pin 99 does not return false');
         }
 
-        let goodInitState = hal.sensor.Dht.init(this.dhtGpioPinIdx);
+        let goodInitState = hal.sensor.Dht.init(this.dhtHardwarePinIdx);
         if (goodInitState) {
-            this.logTestPass(testLogPrefix, 'init Dht on pin ' + JSON.stringify(this.dhtGpioPinIdx) + ' returns sensor onject');
+            this.logTestPass(testLogPrefix, 'init Dht on pin ' + JSON.stringify(this.dhtHardwarePinIdx) + ' returns sensor onject');
         } else {
-            this.logTestError(testLogPrefix, 'init Dht on pin ' + JSON.stringify(this.dhtGpioPinIdx) + ' does not return sensor onject');
+            this.logTestError(testLogPrefix, 'init Dht on pin ' + JSON.stringify(this.dhtHardwarePinIdx) + ' does not return sensor onject');
         }
     },
 
     testSensorDhtRead: function() {
         let testLogPrefix = 'hal.sensor.dht22.read';
-        let dht = hal.sensor.dht.init(this.dhtGpioPinIdx);
+        let dht = hal.sensor.dht.init(this.dhtHardwarePinIdx);
         let temperatureAndHumidity = dht.read();
         if (temperatureAndHumidity) {
             if (temperatureAndHumidity.temperature === null || temperatureAndHumidity.temperature === undefined) {

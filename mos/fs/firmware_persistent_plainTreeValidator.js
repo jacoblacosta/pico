@@ -8,7 +8,7 @@ module.exports = {
             typeof value.to === 'object' && firmware.persistent.plainTreeValidator.time24(value.to)
         );
     },
-    gpioPin: function(value) {
+    hardwarePin: function(value) {
         return (typeof value.idx === 'number' && value.idx >= 0 && value.idx < 32);
     },
     smartOutputPin: function(value) {

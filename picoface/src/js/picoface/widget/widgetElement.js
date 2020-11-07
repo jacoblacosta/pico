@@ -4,7 +4,7 @@ import { i18n } from '../i18n/current.js';
 import { flatSvgCode } from '../flatSvgCode.js';
 import {
     Time24,
-    GpioPin,
+    HardwarePin,
     EnvironmentSensorType,
     SmartOutputPin
 
@@ -341,7 +341,7 @@ export class TextWidgetElement extends AbstractWidget {
         //do nothing
     }
 }
-export class GpioPinWidgetElement extends AbstractWidget {
+export class HardwarePinWidgetElement extends AbstractWidget {
     constructor ($parent, ladder, i18nSubtree) {
         super($parent, ladder, i18nSubtree, {isReadFromUnmanagedDom: true, isLadderElement: true});
     }
@@ -352,11 +352,11 @@ export class GpioPinWidgetElement extends AbstractWidget {
         this.unmanaged.$select = document.createElement('select');
         this.unmanaged.$select.classList.add('select');
 
-        for (let gpioPinIdx = 0; gpioPinIdx < 32; gpioPinIdx++) {
+        for (let hardwarePinIdx = 0; hardwarePinIdx < 32; hardwarePinIdx++) {
             const $option = document.createElement('option')
             $option.classList.add('widget-element-select-option');
-            $option.text = gpioPinIdx;
-            $option.value = gpioPinIdx;
+            $option.text = hardwarePinIdx;
+            $option.value = hardwarePinIdx;
             this.unmanaged.$select.appendChild($option);
         }
 
@@ -387,7 +387,7 @@ export class GpioPinWidgetElement extends AbstractWidget {
     }
     easy_fromUnmanagedDomToBindedRest() {
         const idx = parseInt(this.unmanaged.$select.value);
-        this.binded.rest = new GpioPin(idx);
+        this.binded.rest = new HardwarePin(idx);
     }
     easy_fromBindedToUnmanagedDom() {
         // TODO: make it work with select
@@ -449,11 +449,11 @@ export class SmartOutputPinWidgetElement extends AbstractWidget {
         if (!this.binded.rest) {
             // do nothing
         } else if (this.binded.rest.modeKey === 'raw') {
-            for (let gpioPinIdx = 0; gpioPinIdx < 32; gpioPinIdx++) {
+            for (let hardwarePinIdx = 0; hardwarePinIdx < 32; hardwarePinIdx++) {
                 const $option = document.createElement('option')
                 $option.classList.add('widget-element-select-option');
-                $option.text = 'R' + gpioPinIdx;
-                $option.value = gpioPinIdx;
+                $option.text = 'R' + hardwarePinIdx;
+                $option.value = hardwarePinIdx;
                 this.unmanaged.$idxSelect.appendChild($option);
             }
         } else if (this.binded.rest.modeKey === 'extended') {
@@ -517,7 +517,6 @@ export class SmartOutputPinWidgetElement extends AbstractWidget {
     }
     easy_fromBindedToUnmanagedDom() {
         // TODO: make it work with select
-        console.log('qwe');
         if (this.binded.rest) {
             this.unmanaged.$idxSelect.value = this.binded.rest.idx.toString();
             this.unmanaged.$modeKeySelect.value = this.binded.rest.modeKey;
